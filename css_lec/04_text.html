@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>text</title>
+  <style>
+    /* 구글 폰트 포함*/
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+    /* 구글 폰트 적용 */
+    #content1 {
+      font-family: "Noto Sans KR", sans-serif;
+    }
+    #content2 {
+      font-size: 1em;
+      font-weight: 400;
+      font-style: italic;
+      font-variant: small-caps;
+      line-height: 2;
+      /* 단축속성: 하나의 속성에 여러 값을 줄 수 있다 */
+      font: 1.5em/2 "Noto Sans KR", sans-serif;
+    }
+    #content3 {
+      text-decoration: none;
+      text-align: center; /* 정렬은 인라인이 아닌 블록 요소에만 적용됨. */
+      text-transform: capitalize; /* 단어 첫 글자만 대문자로 변경 */
+      text-transform: lowercase; 
+      text-shadow: 5px 5px 3px red;
+    }
+  </style>
+</head>
+<body>
+  <div id="content1">hello world</div>
+  <div id="content2">hello world</div>
+  <div id="content3">hello WORLD</div>
+</body>
+</html>
