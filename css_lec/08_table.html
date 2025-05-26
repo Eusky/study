@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table</title>
+  <style>
+    .members {
+      border: 1px, solid, black;
+      border-collapse: separate; /* 디폴트 값으로 각 영역의 테두리를 구분합니다. */
+      border-collapse: collapse; /* 각 영역의 빈 공간이 붕괴되어, 테두리가 합쳐집니다. */
+    }
+    .members td {
+      border: 1px, solid, silver;
+      text-align: center; /* 수평 가운데 정렬 */
+      vertical-align: middle; /* 수직 가운데 정렬 */
+    
+    }
+    .members td:nth-child(1) {width: 200px;}
+    .members td:nth-child(2) {width: 400px;}
+    .members td:nth-child(3) {width: 600px;}
+    .members tr {height: 80px;}
+    /* 첫 tr과 마지막 tr에 silver 배경색 주기 */
+    .members > thead > tr, .members > tfoot > tr {
+      background-color: lightgray;
+    }
+    .members > tbody > tr:nth-child(1) > td:nth-child(2):hover,
+    .members > tbody > tr:nth-child(2) > td:nth-child(2):hover,
+    .members > tbody > tr:nth-child(3) > td:nth-child(2):hover 
+    {
+      background-color: beige;
+      cursor: pointer; /* 링크가 걸린 포인터 모양 */
+    }
+    .members > tbody > tr:nth-child(1) > td:nth-child(2):active,
+    .members > tbody > tr:nth-child(2) > td:nth-child(2):active,
+    .members > tbody > tr:nth-child(3) > td:nth-child(2):active 
+    {
+      background-color: bisque;
+    }
+    .members a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none; /* 밑줄 제거 */
+      color: inherit; /* 글자색 상속 */
+    }
+  </style>
+</head>
+<body>
+  
+  <table class="members">
+    <thead>
+      <tr>
+        <td>사이트번호</td>
+        <td>사이트명</td>
+        <td>보유포인트</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><a href="https://naver.com">네이버</a></td>
+        <td>1000</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="https://google.com">구글</a></td>
+        <td>500</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><a href="https://facebook.com">페이스북</a></td>
+        <td>2500</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">포인트 합계</td>
+        <td>4000</td>
+      </tr>
+    </tfoot>
+  </table>
+
+</body>
+</html>

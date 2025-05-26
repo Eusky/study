@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>float</title>
+  <style>
+    div {
+      box-sizing: border-box;
+    }
+    .container1 > div {
+      width: 60px;
+      height: 60px;
+      border: 1px solid black;
+      text-align: center;
+      line-height: 60px;
+    }
+    .container1 > .box1 {
+      float: left;
+    }
+    .container1 > .box2 {
+      float: right;
+    }
+    .container2 > div {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      text-align: center;
+      line-height: 100px;
+    }
+    .container2 > .box1, .container2 > .box2 {
+      float: left;
+    }
+    .container2 > .box3 {
+      clear: left; /* float: left; 영역을 벗어납니다. (left, right, both) */
+      width: 200px;
+    }
+    .gnb {
+      list-style: none;
+      padding: 0;
+    }
+    .gnb > li {
+      float: left;
+      
+    }
+    .content {
+      clear: left;
+    }
+    .gnb > li > a {
+      text-decoration: none;
+      display: block;
+      padding: 10px 5px;
+      border: 1px solid black;
+      color: inherit;
+      box-sizing: border-box;
+      border-left: none;
+    }
+    .gnb > li > a:hover {background-color: aliceblue;}
+    .gnb > li:first-child > a {
+      border-left: 1px solid black;
+    }
+    ul {
+      border: 1px solid red;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  
+<!-- 
+     float 속성
+
+     1. HTML 문서 요소의 일반적인 흐름에서 띄워서(부유시켜서) 왼쪽 또는 오른쪽에 배치하는 방식입니다. 
+     2. 최초 도입 목적은 이미지와 텍스트를 자연스럽게 감싸기 위해서 도입되었습니다. 
+     3. 이후 레이아웃 구성에서도 많이 활용되었습니다. -->
+
+  <div class="container1">
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed tristique mi purus, sit amet scelerisque ligula blandit vitae. Mauris id mauris eleifend velit finibus ornare. Ut bibendum nunc elit, non vulputate libero dictum sed. Fusce purus sem, tristique vel arcu vel, vestibulum pulvinar ex. In vestibulum magna eget interdum sodales. Sed porta lectus vitae urna efficitur dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed nisi nisl, gravida a eros at, tristique accumsan nisl. Nulla congue consequat purus. Praesent imperdiet erat ex. Sed ornare hendrerit diam, nec consectetur nulla suscipit eu. Sed justo augue, gravida nec eleifend a, vestibulum vitae urna. Nunc non tellus tempus, placerat nulla lobortis, rutrum magna. Vestibulum felis leo, pellentesque nec consectetur eget, porttitor sed libero.</p>
+  </div>
+
+  <hr>
+  <div class="container2">
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+  </div>
+
+
+  <!-- 연습) GNB(Global Navigation Bar) -->
+  <ul class="gnb">
+    <li><a href="">홈</a></li>
+    <li><a href="">야구</a></li>
+    <li><a href="">해외야구</a></li>
+    <li><a href="">축구</a></li>
+    <li><a href="">해외축구</a></li>
+    <li><a href="">농구</a></li>
+    <li><a href="">배구</a></li>
+  </ul>
+  <div class="content">내용이 나타나는 곳</div>
+</body>
+</html>

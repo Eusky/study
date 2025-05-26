@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overflow</title>
+  <style>
+    .wrap1 > div {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+    }
+    .wrap1 > .box1 {
+      overflow: hidden; /* 영역을 벗어난 컨텐츠 숨김 */
+    }
+    .wrap1 > .box2 {
+      overflow: scroll; /* 스크롤바 생성 */
+    }
+    .wrap1 > .box3 {
+      overflow: hidden; /* 영역을 벗어난 컨텐츠도 보여줌(디폴트) */
+      margin-bottom: 250px;
+    }
+    .wrap2 {
+      border: 1px solid red;
+      overflow: hidden;
+    }
+    .wrap2 > div {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      float: left;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <div class="wrap1">
+    <div class="box1">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed tristique mi purus, sit amet scelerisque ligula blandit vitae. Mauris id mauris eleifend velit finibus ornare. Ut bibendum nunc elit, non vulputate libero dictum sed. Fusce purus sem, tristique vel arcu vel, vestibulum pulvinar ex. In vestibulum magna eget interdum sodales. Sed porta lectus vitae urna efficitur dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed nisi nisl, gravida a eros at, tristique accumsan nisl. Nulla congue consequat purus. Praesent imperdiet erat ex. Sed ornare hendrerit diam, nec consectetur nulla suscipit eu. Sed justo augue, gravida nec eleifend a, vestibulum vitae urna. Nunc non tellus tempus, placerat nulla lobortis, rutrum magna. Vestibulum felis leo, pellentesque nec consectetur eget, porttitor sed libero.
+    </div>
+    <hr>
+    <div class="box2">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed tristique mi purus, sit amet scelerisque ligula blandit vitae. Mauris id mauris eleifend velit finibus ornare. Ut bibendum nunc elit, non vulputate libero dictum sed. Fusce purus sem, tristique vel arcu vel, vestibulum pulvinar ex. In vestibulum magna eget interdum sodales. Sed porta lectus vitae urna efficitur dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed nisi nisl, gravida a eros at, tristique accumsan nisl. Nulla congue consequat purus. Praesent imperdiet erat ex. Sed ornare hendrerit diam, nec consectetur nulla suscipit eu. Sed justo augue, gravida nec eleifend a, vestibulum vitae urna. Nunc non tellus tempus, placerat nulla lobortis, rutrum magna. Vestibulum felis leo, pellentesque nec consectetur eget, porttitor sed libero.
+    </div>
+    <hr>
+    <div class="box3">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed tristique mi purus, sit amet scelerisque ligula blandit vitae. Mauris id mauris eleifend velit finibus ornare. Ut bibendum nunc elit, non vulputate libero dictum sed. Fusce purus sem, tristique vel arcu vel, vestibulum pulvinar ex. In vestibulum magna eget interdum sodales. Sed porta lectus vitae urna efficitur dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed nisi nisl, gravida a eros at, tristique accumsan nisl. Nulla congue consequat purus. Praesent imperdiet erat ex. Sed ornare hendrerit diam, nec consectetur nulla suscipit eu. Sed justo augue, gravida nec eleifend a, vestibulum vitae urna. Nunc non tellus tempus, placerat nulla lobortis, rutrum magna. Vestibulum felis leo, pellentesque nec consectetur eget, porttitor sed libero.
+    </div>
+  </div>
+
+  <div class="wrap2">
+    <div class="box4">box4</div>
+    <div class="box5">box5</div>
+    <div class="box6">box6</div>
+  </div>
+
+</body>
+</html>
