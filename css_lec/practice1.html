@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Flex 연습 예제</title>
+<style>
+  .container {
+    display: flex;
+    border: 2px solid black;
+    height: 200px;
+  }
+  .box {
+    background: lightblue;
+    border: 1px solid blue;
+    flex: 1; /* 같은 비율로 공간 나눔 */
+    margin: 5px;
+    text-align: center;
+    line-height: 180px; /* 수직 가운데 정렬용 */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+</div>
+
+<!-- 
+
+  부모 속성(container) 
+ - flex-direction
+ - flex-wrap
+ - justify-content
+ - align-items 
+ - align-content 
+ 
+  자식 속성(items)
+ - flex
+ - flex-grow
+ - flex-shrink
+ - flex-basis
+ - order 
+ 
+ -->
+
+</body>
+</html>
