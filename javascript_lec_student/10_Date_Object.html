@@ -58,6 +58,37 @@ Date 내장 객체
   1) 현지 시간 기준 초 반환
   2) 0 - 59
 -->
+<script>
+  // Date 객체 생성
+  {
+    const now = new Date(); // 지금 날짜/시간을 Date 객체로 반환
+    console.log(now);
 
+    // string 객체 생성
+    const str = Date(); // 지금 날짜/시간을 string 타입으로 반환 
+    console.log(str);
+
+    // 타임스탬프 확인
+    console.log(Date.now());
+    console.log(now.getTime());
+  }
+  {
+    // Date 객체 생성
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1; // getMonth()는 0~11 값을 반환합니다.
+    const day = now.getDate();
+    const dayNo = now.getDay(); // getDay()는 0~6 사이값을 반환합니다. 0은 '일요일'을 의미합니다.
+    
+    // 연습) 전달한 날짜를 "2025-05-30 금" 형식(yyyy-MM-dd a)의 문자열로 반환하는 함수를 구현하세요.
+    const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    const prefixZero = value => value < 10 ? '0' + value : value;
+    const getFormattedDate = date => {
+      result =  year + '-' + prefixZero(month) + '-' + prefixZero(day) + ' ' + days[dayNo];
+      return result;
+    };
+    console.log(getFormattedDate(new Date()));
+  }
+</script>
 </body>
 </html>

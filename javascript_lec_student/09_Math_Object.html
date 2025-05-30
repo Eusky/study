@@ -46,6 +46,18 @@ Math 내장 객체
   1) 0.0 이상 1.0 미만의 부동 소수점 의사 난수 반환
   2) 암호학적으로 안전한 난수를 제공하지 않으므로 보안과 관련된 용도로 사용 금지(대신 window.crypto.getRandomValues() 메소드 권장)
 -->
+<script>
+  // 연습) 원하는 자릿수로 올림 처리한 결과를 반환하는 함수를 구현하세요.
+  // getCeil(123.45, 1) : 123.5
+  // getCeil(123.45, 0) : 124
+  // getCeil(123.45) : 124
+  // getCeil(123.45, -1) : 130
+  // getCeil(123.45, -2) : 200
 
+  function getCeil(num, zari = 0) {
+    return Math.ceil(num * (10 ** zari)) * (10 ** -zari);
+  }
+  console.log(getCeil(123.45, -2));
+</script>
 </body>
 </html>

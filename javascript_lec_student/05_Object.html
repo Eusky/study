@@ -251,5 +251,20 @@
   document.write(str);
 
 </script>
+<script>
+  const user = {
+    name: "jackson",
+    age: 20,
+    phone: "010-1111-2222",
+    gender: "male",
+    addr: "seoul",
+  }
+  // 객체나 배열에서 사용할 수 있는 새로운 연산자: 스프레드 연산자(...)
+  // 객체나 배열을 펼쳐서(복사해서) 새로운 객체나 배열을 만들 때 사용합니다.
+  const newUser = {
+    ...user
+  }
+  console.log(newUser);
+</script>
 </body>
 </html>

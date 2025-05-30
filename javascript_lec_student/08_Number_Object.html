@@ -48,8 +48,33 @@ Number 내장 객체 (숫자를 표현하고 다루는 Primitive wrapper object)
 
 9. Number.prototype.toFixed([digits])
   1) 고정 소수점 표기법을 사용하여 나타낸 수를 문자열로 바꾼 값을 반환
-  2) 소수점 뒤에 나타날 자릿수, 0 ~ 20 사이 값을 가짐, 기본값은 0
+  2) digits: 소수점 뒤에 나타날 자릿수, 0 ~ 20 사이 값을 가짐, 기본값은 0
 -->
+<script>
+  console.log(Number.isInteger(10), Number.isInteger(3.14));
+  console.log(Number.isNaN(5 / 2), Number.isNaN("hello" / 2));
+  console.log(Number.parseInt("10"), Number.parseInt("10.5"), Number.parseInt(10));
+  // parseInt : 문자열을 정수로 변환
+  const number = 12345;
+  console.log(number.toFixed(2));
+</script>
+<script>
+  // 난수 조정하기
+  // Math.random() 0.0 <= 난수 < 1.0
+  // Math.floor(Math.random() * 5) 0.0 <= 난수 < 5.0
+  // Math.floor(Math.random() * 5 + 1) 1 <= 난수 < 6
+  console.log('로또볼', Math.floor(Math.random() * 45 + 1)); 
+</script>
+<script>
+  {
+    // 연습) 전달된 두 값 사이의 난수를 반환하는 함수를 구현합니다.
+    // 1과 10 전달시 1~9 사이 난수를 발생합니다. 
+    function getRandom(start, end) {
+      return Math.floor(Math.random() * (end - start) + start);
+    }
 
+    console.log(getRandom(1, 10));
+  }
+</script>
 </body>
 </html>
