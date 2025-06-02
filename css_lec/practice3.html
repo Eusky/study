@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Website</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+
+  header {
+    text-align: center;
+    padding: 20px 0;
+    background: #fff;
+  }
+
+  nav {
+    background: #000;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li {
+    flex: 1;
+  }
+
+  nav a {
+    display: block;
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  nav a.active {
+    background: green;
+  }
+
+  nav a:hover {
+    background: #333;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
+
+  .main {
+    flex: 3;
+    min-width: 300px;
+    margin: 10px;
+  }
+
+  .sidebar {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .card {
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .card h2 {
+    margin: 0;
+    background: #eee;
+    padding: 10px;
+  }
+
+  .card p {
+    margin: 0;
+    padding: 10px;
+  }
+
+  footer {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+    }
+
+    .container {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Website</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#">메뉴1</a></li>
+    <li><a href="#" class="active">메뉴2</a></li>
+    <li><a href="#">메뉴3</a></li>
+    <li><a href="#">메뉴4</a></li>
+    <li><a href="#">메뉴5</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <div class="main">
+    <div class="card">
+      <h2>Title</h2>
+      <p>Description</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a aliquet nisl, in commodo nulla.</p>
+    </div>
+    <div class="card">
+      <h2>Title</h2>
+      <p>Description</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a aliquet nisl, in commodo nulla.</p>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="card">
+      <h2>Title</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a aliquet nisl, in commodo nulla.</p>
+    </div>
+    <div class="card">
+      <h2>Title</h2>
+    </div>
+  </div>
+</div>
+
+<footer>
+  footer
+</footer>
+
+</body>
+</html>

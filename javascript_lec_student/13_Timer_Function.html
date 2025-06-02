@@ -53,6 +53,67 @@
       let intervalID = setInterval();
       clearInterval(intervalID);
 -->
+<script>
+  // {
+  // const id = setTimeout(() => {
+  //   alert("Hello World");
+  // }, 1000) // 1000밀리초(1초)후에 화살표 함수가 동작합니다.
+  // alert(id); // setTimeout은 비동기 함수이므로, 실행 순서에 영향을 미치지 않습니다.
+  //            // 비동기 함수란 실행의 완료를 기다리지 않고 다음 실행을 진행하는 함수입니다.
+  // clearTimeout(id); // 타이머 아이디가 id인 타이머를 취소합니다.
+  // const id2 = setTimeout(() => {
+  //   alert("Hello World2");
+  // }, 1000)
+  // alert(id2);
+  // }
+  // {
+  //   setTimeout(()=>{alert("Hello"); setTimeout(()=>{alert("World");} ,3000)}, 3000)
+  // }
+  // {
+  //   // 연습) 1초마다 화면에 1씩 줄어든 값을 보여주는 타이머를 구현합니다.
+  //   // 전달한 인자값에 따라 타이머가 동작합니다.
+  //   // timer(3) 호출하면 화면에 '3', '2', '1', '타이머 완료' 메시지가 1초마다 순차적으로 나타납니다.
+    
+  //   const timer = (sec) => {
+  //     setTimeout(() => {
+  //       document.write(`<div>${sec--}</div>`);
+  //       if(sec == 0) {
+  //         document.write("타이머 완료");
+  //         return; // setTimeout에 전달한 익명함수를 종료합니다.
+  //       }
+  //       timer(sec); // timer 함수 내부에서 timer 함수를 호출합니다. 이와 같은 호출을 재귀 호출(Recursive Call)이라고 합니다.
+  //     }, 1000);
+  //   }
+  //   let sec = prompt("초를 입력하세요.");
+  //   timer(sec);
+  // }
 
+</script>
+<!-- <script>
+  {
+    let count = 0;
+    const id = setInterval(() => {
+      count++;
+      console.log(count + "Hello World");
+      if (count == 5) clearInterval(id);
+      
+    }, 1000); // 1000밀리초(1초)마다 화살표 함수를 반복해서 실행합니다.
+  }
+</script> -->
+<script>
+    const timer = sec => {
+      const id = setInterval(() => {
+        document.write(`<div>${sec--}</div>`);
+        if(sec == 0) {
+          document.write("타이머 완료");
+          clearInterval(id);
+      }
+      }, 1000);
+
+  }
+  let sec = prompt("초를 입력하세요.");
+  timer(sec);
+  
+</script>
 </body>
 </html>
