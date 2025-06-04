@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      border: 1px solid black;
+    }
+    textarea {
+      width: 80%;
+      height: 80%;
+    }
+    #submit {
+      display: flex;
+      width: 300px;
+      justify-content: center;
+    }
+    
+  </style>
+</head>
+<body>
+  <div>
+    <span>
+      "핀란드", "브라질", "이집트", "태국", "캐나다", "포르투갈", "뉴질랜드", "터키", "나이지리아"
+    </span>
+  </div>
+  <br>
+  <table>
+    <tbody>
+      <tr>
+        <td><textarea name="name" id="id"></textarea></td>
+        <td><textarea name="name" id="id"></textarea></td>
+        <td><textarea name="name" id="id"></textarea></td>
+      </tr>
+      <tr>
+        <td><textarea name="name" id="id"></textarea></td>
+        <td><textarea name="name" id="id"></textarea></td>
+        <td><textarea name="name" id="id"></textarea></td>
+      </tr>
+      <tr>
+        <td><textarea name="name" id="id"></textarea></td>
+        <td><textarea name="name" id="id"></textarea></td>
+        <td><textarea name="name" id="id"></textarea></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div id="submit">
+    <button type="button" id="button">완료</button>
+  </div>
+  
+<script>
+  const arr = [];
+  const btn = document.getElementById('button');
+  btn.addEventListener('click', collectValues());
+</script>
+</body>
+</html>
