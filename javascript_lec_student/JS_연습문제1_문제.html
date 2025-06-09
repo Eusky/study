@@ -12,6 +12,7 @@
       border: 1px solid black;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -126,8 +127,41 @@
     [Hint] 남은 시간 = 수능일's 타임스탬프 - 현재's 타임스탬프
     타임스탬프(밀리초)로 계산된 남은 시간은 일/시/분/초 단위로 변환 후 처리합니다.
   -->
-  <div id="d-day"></div>
+  <div id="d-day">D-DAY 000일</div>
   <script>
+    {
+    const dDay = document.getElementById('d-day');
+    const suneong = new Date('2025-11-13T00:00:00');
+    const suneongTime = new Date('2025-11-13T08:10:00');
+    const pad = (n) => n.toString().padStart(2, '0');
+
+    const id = setInterval(() => {
+      const now = Date.now();
+      const diff = suneong - now;
+      const diffDays = diff / (1000 * 60 * 60 * 24);
+      const diffTime = suneongTime - now;
+      const totalSec = Math.floor(diffTime / 1000);
+      const hours = Math.floor(totalSec / 3600);
+      const minutes = Math.floor((totalSec % 3600) / 60);
+      const seconds = totalSec % 60;
+
+      if(diffDays > 0) {
+      dDay.textContent = 'D-DAY ' + Math.ceil(diffDays) + '일';
+      }
+      else {
+        if(diffTime > 0) {
+          dDay.textContent = `D-DAY! 입실까지 남은 시간 ${pad(hours)}시 ${pad(minutes)}분 ${pad(seconds)}초`;
+        }
+        else {
+          dDay.textContent = 'D-DAY가 지났습니다.';
+          clearInterval(id);
+        }
+      }
+    }, 1000)
+    }
+   
+
+
 
   </script>
 
@@ -143,7 +177,19 @@
     <img id="light" src="../assets/images/lightOff.png" width="50px">
   </div>
   <script>
+    const btn = document.getElementById('switch');
+    const img = document.getElementById('light');
 
+    btn.addEventListener('click', () => {
+      if(btn.textContent == 'ON') {
+      btn.textContent = 'OFF';
+      img.src = '../assets/images/lightOn.png';
+      }
+      else {
+        btn.textContent = 'ON';
+        img.src = '../assets/images/lightOff.png';
+      }
+    });
   </script>
 
   <hr>
@@ -161,7 +207,18 @@
     </span>
   </div>
   <script>
-
+    const pw = document.getElementById('pw');
+    const icon = document.querySelector('#icon i');
+    icon.addEventListener('click', () => {
+      if (icon.classList.contains('fa-eye')) {
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+        pw.type = 'text';
+      }
+      else {
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+        pw.type = 'password';
+      }
+    })
   </script>
 
   <hr>
@@ -175,28 +232,56 @@
     개별 선택 구현 시 모든 체크박스들의 checked 프로퍼티 값을 더해서 모두 체크되었는지 확인하는 방법을 고려해 보세요.
   -->
   <style>
-
+    input[type="checkbox"] {
+      display: none;
+    }
+    .agree label {
+      display: inline-block;
+      padding-left: 35px;
+      height: 40px;
+      line-height: 40px;
+      background-image: url(../assets/images/check1.png);
+      background-size: 25px 25px;
+      background-repeat: no-repeat;
+      background-position: left center;
+      cursor: pointer;
+      
+    }
+    input[type="checkbox"]:checked + .chk_label {
+      background-image: url(../assets/images/check2.png);
+    }
   </style>
   <div class="agree">
     <div>
       <input type="checkbox" id="chk_all">
-      <label for="chk_all">전체선택</label>
+      <label for="chk_all" class="chk_label">전체선택</label>
     </div>
     <div>
       <input type="checkbox" id="chk_one" class="chk_each">
-      <label for="chk_one">필수 동의합니다.</label>
+      <label for="chk_one" class="chk_label">필수 동의합니다.</label>
     </div>
     <div>
       <input type="checkbox" id="chk_two" class="chk_each">
-      <label for="chk_two">필수 동의합니다.</label>
+      <label for="chk_two" class="chk_label">필수 동의합니다.</label>
     </div>
     <div>
       <input type="checkbox" id="chk_three" class="chk_each">
-      <label for="chk_three">필수 동의합니다.</label>
+      <label for="chk_three" class="chk_label">필수 동의합니다.</label>
     </div>
   </div>
   <script>
-    
+    const chkAll = document.getElementById('chk_all');
+    const chkEach = document.querySelectorAll('.chk_each');
+
+    chkAll.addEventListener('change', () => {
+      chkEach.forEach(chk => chk.checked = chkAll.checked);
+    });
+
+    chkEach.forEach(chk => {
+      chk.addEventListener('change', () => {
+        chkAll.checked = [...chkEach].every(el => el.checked);
+      });
+    });
   </script>
 
   <hr>
@@ -209,6 +294,7 @@
     입력한 단어가 맞으면 "딩동댕" 경고 메시지를 출력하고, 입력한 단어를 이용해 계속 끝맛잇기를 진행합니다.
     입력한 단어가 틀리면 "땡" 경고 메시지를 출력하고, 다시 입력해야 합니다.
   -->
+  
   <div id="word">여기에 게임 시작 단어를 표시하세요.</div>
   <div>
     <input type="text" id="input">
@@ -216,7 +302,30 @@
   </div>
 
   <script>
+  { 
     const words = ["자바", "자바스크립트", "데이터베이스", "스프링", "도커",];
+    const word = document.getElementById('word');
+    const btn = document.getElementById('btn');
+    let userWord = '';
+
+    const randomNum = Math.floor(Math.random() * 5); // 0 ~ 4 랜덤 정수 생성 
+    let randomWord = words[randomNum];
+    word.textContent = randomWord;
+
+    btn.addEventListener('click', () => {
+      userWord = document.getElementById('input').value;
+      document.getElementById('input').value = ''; // 입력창 초기화 
+
+      if (userWord.startsWith(randomWord.slice(-1))) {
+        alert('딩동댕');
+        word.textContent = userWord;
+        randomWord = userWord;
+      }
+      else {
+        alert('땡');
+      }
+    })
+  }
   </script>
 
 </body>
