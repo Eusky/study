@@ -44,7 +44,7 @@
     <input type="radio" name="category" id="price"><label for="price">가격</label>
   </div>
   <!-- 제목 검색 화면 -->
-  <div id="title-search" class="search-boxes init-show">
+  <div id="title-search" class="search-boxes">
     <form method="get" action="/search.do">
       <div>제목 검색</div>
       <input type="text" name="title" placeholder="검색할 제목을 입력하세요"> 
@@ -68,7 +68,7 @@
     </form>
   </div>
   <style>
-    .search-boxes {
+    .hide-boxes {
       display: none;
     }
     .init-show {
@@ -76,15 +76,15 @@
     }
   </style>
   <script>
-    const title = document.getElementById("title");
-    const date = document.getElementById("date");
-    const price = document.getElementById("price");
     const radios = document.querySelectorAll("input[name='category']");
+    const searchBoxes = document.querySelectorAll(".search-bixes");
+
 
     radios.forEach(radio => {
       radio.addEventListener("change", e => {
         if(e.target.checked) {
-          document.getElementById(`${e.target.id}-search`).classList.add("init-show")
+          searchBoxes.forEach(box => box.classList.add("hide-boxes"));
+          document.getElementById(`${e.target.id}-search`).classList.add("init-show");
         }
       })
     })
