@@ -27,72 +27,70 @@
 <body>
   <h1 class="title">웹(HTML, CSS, JavaScript) 단어집</h1>
   <h2>HTML</h2>
-  <div>
-    <div>
-      <span class="wordNum">1.</span>
-      <input type="text" class="word" id="word1">
-      <span class="isCorrect" id="isCorrect1"></span>
-    </div>
-    <br>
-    <button type="button" class="btn-submit" id="btn-submit1">제출</button>
-    <div>
-      <span>
-        <br>
-        &bull; 하나의 태그가 브라우저 좌우공간을 모두 차지하면서 독립적인 공간을 가지는 요소들입니다.
-        <br>
-        &bull; 브라우저 화면의 특정 구역을 만드는 용도(레이아웃 구성)로 사용합니다.
-        <br>
-        &bull; 이 요소는 내부에 이 요소와 인라인 요소를 포함할 수 있습니다.
-      </span>
-    </div>
-  </div>
-  <br>
-  <div>
-    <div>
-      <span class="wordNum">2.</span>
-      <input type="text" class="word" id="word2">
-      <span class="isCorrect" id="isCorrect2"></span>
-    </div>
-    <br>
-    <button type="button" class="btn-submit" id="btn-submit2">제출</button>
-    <div>
-      <span>
-        <br>
-        &bull; 하나의 태그가 브라우저에서 특정 요소의 영역만 차지하여 좌우로 다른 태그가 나란히 위치할 수 있는 요소들입니다. 
-        <br>
-        &bull;텍스트와 같은 컨텐츠의 영역만 차지하므로 텍스트레벨요소라고도 합니다.
-        <br>
-        &bull;이 요소는 내부에 이 요소만 포함할 수 있습니다. 
-      </span>
-    </div>
-  </div>
+
+  <div id="container"></div>
+
 <script>
+  const questions = {
+    no1: [
+    "하나의 태그가 브라우저 좌우공간을 모두 차지하면서 독립적인 공간을 가지는 요소들입니다.",
+    "브라우저 화면의 특정 구역을 만드는 용도(레이아웃 구성)로 사용합니다.",
+    "이 요소는 내부에 이 요소와 인라인 요소를 포함할 수 있습니다.",],
+
+    no2: [
+    "하나의 태그가 브라우저에서 특정 요소의 영역만 차지하여 좌우로 다른 태그가 나란히 위치할 수 있는 요소들입니다.", 
+    "텍스트와 같은 컨텐츠의 영역만 차지하므로 텍스트레벨요소라고도 합니다.",
+    "이 요소는 내부에 이 요소만 포함할 수 있습니다.",],
+
+    no3: [
+      "닫는 태그가 없는 태그를 의미합니다.",
+      "스스로 닫는 태그(Self-closing tag)라고 부릅니다.",],
+  }
   const answers = {
     no1: "블록요소",
     no2: "인라인요소",
+    no3: "빈요소",
   };
-  document.getElementById("btn-submit1").addEventListener("click", () => {
-    const word1 = document.getElementById("word1").value;
-    if(word1 === answers.no1) {
-      document.getElementById("isCorrect1").textContent = "정답";
-      document.getElementById("isCorrect1").style.color = "green";
-    }
-    else {
-      document.getElementById("isCorrect1").textContent = "오답";
-      document.getElementById("isCorrect1").style.color = "red";
-    }
-  })
-  document.getElementById("btn-submit2").addEventListener("click", () => {
-    const word2 = document.getElementById("word2").value;
-    if(word2 === answers.no2) {
-      document.getElementById("isCorrect2").textContent = "정답";
-      document.getElementById("isCorrect2").style.color = "green";
-    }
-    else {
-      document.getElementById("isCorrect2").textContent = "오답";
-      document.getElementById("isCorrect2").style.color = "red";
-    }
-  })
+  const answersLength = Object.keys(answers).length;
+  const container = document.getElementById("container");
+
+  for(let n=0; n<answersLength; n++) {
+    const key = "no" + (n+1);
+    let str = "";
+    questions[key].forEach(item => str += "<br>&bull; " + item);
+
+    str = `
+      <div>
+        <span class="wordNum">${n+1}.</span>
+        <input type="text" class="word" id="word${n+1}">
+        <span class="isCorrect" id="isCorrect${n+1}"></span>
+      </div>
+      <br>
+      <button type="button" class="btn-submit" id="btn-submit${n+1}">제출</button>
+      <div>
+        <span>`
+          + str +
+       `</span>
+      </div>
+      <br>
+    `;
+    container.innerHTML += str;
+  }
+
+  for(let n=0; n<answersLength; n++) {
+    document.getElementById(`btn-submit${n+1}`).addEventListener("click", () => {
+      const word = document.getElementById(`word${n+1}`).value;
+      console.log(word, answers[`no${n+1}`]);
+      if(word === answers[`no${n+1}`]) {
+        document.getElementById(`isCorrect${n+1}`).textContent = "정답";
+        document.getElementById(`isCorrect${n+1}`).style.color = "green";
+      }
+      else {
+        document.getElementById(`isCorrect${n+1}`).textContent = "오답";
+        document.getElementById(`isCorrect${n+1}`).style.color = "red";
+      }
+    })
+  }
 </script>
 </body>
 </html>
