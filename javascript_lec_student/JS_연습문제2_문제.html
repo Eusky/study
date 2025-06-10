@@ -44,7 +44,7 @@
     <input type="radio" name="category" id="price"><label for="price">가격</label>
   </div>
   <!-- 제목 검색 화면 -->
-  <div id="title-search" class="search-boxes">
+  <div id="title-search" class="search-boxes hide-boxes init-show" >
     <form method="get" action="/search.do">
       <div>제목 검색</div>
       <input type="text" name="title" placeholder="검색할 제목을 입력하세요"> 
@@ -52,7 +52,7 @@
     </form>
   </div>
   <!-- 날짜 검색 화면 -->
-  <div id="date-search" class="search-boxes">
+  <div id="date-search" class="search-boxes hide-boxes">
     <form method="get" action="/search.do">
       <div>날짜 검색</div>
       <input type="date" name="start"> - <input type="date" name="end"> 
@@ -60,7 +60,7 @@
     </form>
   </div>
   <!-- 가격 검색 화면 -->
-  <div id="price-search" class="search-boxes">
+  <div id="price-search" class="search-boxes hide-boxes">
     <form method="get" action="/search.do">
       <div>가격 검색</div>
       <input type="number" name="min-price" placeholder="최소 가격"> - <input type="number" name="max-price" placeholder="최대 가격">
@@ -77,14 +77,19 @@
   </style>
   <script>
     const radios = document.querySelectorAll("input[name='category']");
-    const searchBoxes = document.querySelectorAll(".search-bixes");
+    const searchBoxes = document.querySelectorAll(".search-boxes");
 
 
     radios.forEach(radio => {
       radio.addEventListener("change", e => {
         if(e.target.checked) {
-          searchBoxes.forEach(box => box.classList.add("hide-boxes"));
-          document.getElementById(`${e.target.id}-search`).classList.add("init-show");
+          searchBoxes.forEach(box => {
+            box.classList.remove("init-show");
+            box.classList.add("hide-boxes");
+          })
+          const target = document.getElementById(`${e.target.id}-search`);
+          target.classList.remove("hide-boxes");
+          target.classList.add("init-show");
         }
       })
     })
