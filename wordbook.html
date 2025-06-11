@@ -8,13 +8,21 @@
     #nav {
       display: flex;
       justify-content: center;
-      height: 60px;
+      height: 80px;
       background-color: #333;
     }
     #nav > a {
       color: white;
       font-size: 20px;
       text-decoration: none;
+      display: flex;
+      line-height: 80px;
+      width: 33.33%;
+      justify-content: center;
+    }
+    #nav > a:hover {
+      background-color: green;
+      color: #333;
     }
     .title {
       text-align: center;
@@ -47,9 +55,23 @@
       font-size: 20px;
       font-weight: bold;
     }
+    .wordJS {
+      border: none;
+      border-bottom: 2px solid #333;
+      background-color: transparent;
+      padding: 5px;
+      font-size: 20px;
+      font-weight: bold;
+      outline: none;
+      width: 200px;
+    }
+    .wordJSNum {
+      font-size: 20px;
+      font-weight: bold;
+    }
     h2 {
       text-align: center;
-      background-color: lightgrey;
+      background-color: lightgray;
       height: 60px;
       line-height: 60px;
     }
@@ -62,6 +84,7 @@
     <a href="#css">CSS</a>
     <a href="#js">JavaScript</a>
   </div>
+
   <h2 id="html">HTML</h2>
   <div id="containerHTML"></div>
 
@@ -213,6 +236,58 @@
       else {
         document.getElementById(`isCorrectCSS${n+1}`).textContent = "오답";
         document.getElementById(`isCorrectCSS${n+1}`).style.color = "red";
+      }
+    })
+  }
+</script>
+<script>
+  const questionsJS = {
+    no1: [
+      "객체가 아니면서 메소드(method)와 속성(property)을 가지지 않는 데이터입니다.",
+      "JavaScript primitive 라고 하고 다음 7종류가 해당됩니다.",
+      "string, number, bigint, boolean, undefined, null, symbol",
+    ],
+  }
+  const answersJS = {
+    no1: "원시값",
+  };
+  const answersJSLength = Object.keys(answersJS).length;
+  const containerJS = document.getElementById("containerJS");
+
+  for(let n=0; n<answersJSLength; n++) {
+    const key = "no" + (n+1);
+    let str = "";
+    questionsJS[key].forEach(item => str += "<br>&bull; " + item);
+
+    str = `
+      <div>
+        <span class="wordJSNum">${n+1}.</span>
+        <input type="text" class="wordJS" id="wordJS${n+1}">
+        <span class="isCorrectJS" id="isCorrectJS${n+1}"></span>
+        <button type="button" class="btn-submitJS" id="btn-submitJS${n+1}">제출</button>
+      </div>
+      <div>
+        <span>`
+          + str +
+       `</span>
+      </div>
+      <br>
+    `;
+    containerJS.innerHTML += str;
+  }
+
+  for(let n=0; n<answersJSLength; n++) {
+    document.getElementById(`btn-submitJS${n+1}`).addEventListener("click", () => {
+      const wordJS = document.getElementById(`wordJS${n+1}`).value;
+      const removeAllSpaces = wordJS.replace(/\s+/g, "");
+      
+      if(removeAllSpaces === answersJS[`no${n+1}`]) {
+        document.getElementById(`isCorrectJS${n+1}`).textContent = "정답";
+        document.getElementById(`isCorrectJS${n+1}`).style.color = "green";
+      }
+      else {
+        document.getElementById(`isCorrectJS${n+1}`).textContent = "오답";
+        document.getElementById(`isCorrectJS${n+1}`).style.color = "red";
       }
     })
   }
