@@ -202,8 +202,10 @@
       const xhr = new XMLHttpRequest();
       xhr.open("get", "https://jsonplaceholder.typicode.com/users/" + jsonData.userId); // 첫 번째 요청의 결과를 이용해서 두 번째 요청을 진행합니다.
       xhr.addEventListener("load", () => {
+        console.log("파싱전" , xhr.responseText);
         const result = JSON.parse(xhr.responseText);
-        console.log("name", result.name);
+        console.log("파싱후" , result);
+        // console.log("name", result.name);
       })
       xhr.send();
     })

@@ -3,12 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>wordbook</title>
+  <title>wordHTMLbook</title>
   <style>
+    #nav {
+      display: flex;
+      justify-content: center;
+      height: 60px;
+      background-color: #333;
+    }
+    #nav > a {
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+    }
     .title {
       text-align: center;
     }
-    .word {
+    .wordHTML {
       border: none;
       border-bottom: 2px solid #333;
       background-color: transparent;
@@ -18,55 +29,117 @@
       outline: none;
       width: 200px;
     }
-    .wordNum {
+    .wordHTMLNum {
       font-size: 20px;
       font-weight: bold;
+    }
+    .wordCSS {
+      border: none;
+      border-bottom: 2px solid #333;
+      background-color: transparent;
+      padding: 5px;
+      font-size: 20px;
+      font-weight: bold;
+      outline: none;
+      width: 200px;
+    }
+    .wordCSSNum {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    h2 {
+      text-align: center;
+      background-color: lightgrey;
+      height: 60px;
+      line-height: 60px;
     }
   </style>
 </head>
 <body>
   <h1 class="title">웹(HTML, CSS, JavaScript) 단어집</h1>
-  <h2>HTML</h2>
+  <div id="nav">
+    <a href="#html">HTML</a>
+    <a href="#css">CSS</a>
+    <a href="#js">JavaScript</a>
+  </div>
+  <h2 id="html">HTML</h2>
+  <div id="containerHTML"></div>
 
-  <div id="container"></div>
+  <h2 id="css">CSS</h2>
+  <div id="containerCSS"></div>
+
+  <h2 id="js">JavaScript</h2>
+  <div id="containerJS"></div>
+
 
 <script>
-  const questions = {
+  const questionsHTML = {
     no1: [
     "하나의 태그가 브라우저 좌우공간을 모두 차지하면서 독립적인 공간을 가지는 요소들입니다.",
     "브라우저 화면의 특정 구역을 만드는 용도(레이아웃 구성)로 사용합니다.",
-    "이 요소는 내부에 이 요소와 인라인 요소를 포함할 수 있습니다.",],
-
+    "이 요소는 내부에 이 요소와 인라인 요소를 포함할 수 있습니다.",
+    ],
     no2: [
     "하나의 태그가 브라우저에서 특정 요소의 영역만 차지하여 좌우로 다른 태그가 나란히 위치할 수 있는 요소들입니다.", 
     "텍스트와 같은 컨텐츠의 영역만 차지하므로 텍스트레벨요소라고도 합니다.",
-    "이 요소는 내부에 이 요소만 포함할 수 있습니다.",],
-
+    "이 요소는 내부에 이 요소만 포함할 수 있습니다.",
+    ],
     no3: [
       "닫는 태그가 없는 태그를 의미합니다.",
       "스스로 닫는 태그(Self-closing tag)라고 부릅니다.",],
+    no4: [
+      "닫는 태그가 있는 태그를 의미합니다.",
+      "Normal element, Non-void element, Standard element 등으로 부릅니다.",],
+    no5: [
+      "HTML 문서에서 특수 문자나 예약 문자를 안전하게 표현하기 위해 사용하는 문자 참조 방식입니다.",
+      "HTML에서는 일부 문자가 태그나 제어문자로 해석되기 때문에, 이 문자들을 그대로 입력하면 브라우저가 의도와 다르게 해석할 수 있습니다. 이런 문제를 방지하기 위해 이것을 사용합니다.",
+    ],
+    no6: [
+      "&ltform&gt 태그의 데이터 전송 방식(method) 중 하나로 데이터가 URL에 노출되어 전송되어 검색, 단순 조회에 적합한 방식입니다.",
+    ],
+    no7: [
+      "&ltform&gt 태그의 데이터 전송 방식(method) 중 하나로 데이터가 본문(body)에 담겨 전송되어 로그인, 회원가입 등 보안이 필요한 경우에 적합한 방식입니다.",
+    ],
+    no8: [
+      "태그 사용 규칙: 태그(Tag)와 속성(Attribute) 이름은 ___ 로 작성합니다.",
+    ],
+    no9: [
+      "이 태그는 태그는 HTML에서 제목(heading)을 표시하는 태그로, 문서의 구조와 계층을 나타내는 데 사용됩니다.",
+      "이 태그들은 시맨틱(semantic) 요소로, 웹페이지의 논리적 구조와 검색 엔진 최적화(SEO), 접근성 향상에 중요한 역할을 합니다.",
+    ],
+    no10: [
+      "이 태그는 HTML에서 paragraph(문단) 태그로, 웹 문서에서 텍스트의 단락(문단)을 구분할 때 사용합니다.",
+      "태그는 하나의 문단을 나타내며, 주로 여러 문장을 하나의 의미 있는 덩어리로 묶을 때 활용합니다.",
+    ]
   }
-  const answers = {
+  const answersHTML = {
     no1: "블록요소",
     no2: "인라인요소",
     no3: "빈요소",
-  };
-  const answersLength = Object.keys(answers).length;
-  const container = document.getElementById("container");
+    no4: "일반요소",
+    no5: "엔티티코드",
+    no6: "get",
+    no7: "post",
+    no8: "소문자",
+    no9: "<h>",
+    no10: "<p>",
 
-  for(let n=0; n<answersLength; n++) {
+  };
+  const answersHTMLLength = Object.keys(answersHTML).length;
+  const containerHTML = document.getElementById("containerHTML");
+
+  for(let n=0; n<answersHTMLLength; n++) {
     const key = "no" + (n+1);
     let str = "";
-    questions[key].forEach(item => str += "<br>&bull; " + item);
+    questionsHTML[key].forEach(item => str += "<br>&bull; " + item);
 
     str = `
       <div>
-        <span class="wordNum">${n+1}.</span>
-        <input type="text" class="word" id="word${n+1}">
-        <span class="isCorrect" id="isCorrect${n+1}"></span>
+        <span class="wordHTMLNum">${n+1}.</span>
+        <input type="text" class="wordHTML" id="wordHTML${n+1}">
+        <span class="isCorrectHTML" id="isCorrectHTML${n+1}"></span>
+        <button type="button" class="btn-submitHTML" id="btn-submitHTML${n+1}">제출</button>
       </div>
-      <br>
-      <button type="button" class="btn-submit" id="btn-submit${n+1}">제출</button>
       <div>
         <span>`
           + str +
@@ -74,20 +147,72 @@
       </div>
       <br>
     `;
-    container.innerHTML += str;
+    containerHTML.innerHTML += str;
   }
 
-  for(let n=0; n<answersLength; n++) {
-    document.getElementById(`btn-submit${n+1}`).addEventListener("click", () => {
-      const word = document.getElementById(`word${n+1}`).value;
-      console.log(word, answers[`no${n+1}`]);
-      if(word === answers[`no${n+1}`]) {
-        document.getElementById(`isCorrect${n+1}`).textContent = "정답";
-        document.getElementById(`isCorrect${n+1}`).style.color = "green";
+  for(let n=0; n<answersHTMLLength; n++) {
+    document.getElementById(`btn-submitHTML${n+1}`).addEventListener("click", () => {
+      const wordHTML = document.getElementById(`wordHTML${n+1}`).value;
+      const removeAllSpaces = wordHTML.replace(/\s+/g, "");
+      
+      if(removeAllSpaces === answersHTML[`no${n+1}`]) {
+        document.getElementById(`isCorrectHTML${n+1}`).textContent = "정답";
+        document.getElementById(`isCorrectHTML${n+1}`).style.color = "green";
       }
       else {
-        document.getElementById(`isCorrect${n+1}`).textContent = "오답";
-        document.getElementById(`isCorrect${n+1}`).style.color = "red";
+        document.getElementById(`isCorrectHTML${n+1}`).textContent = "오답";
+        document.getElementById(`isCorrectHTML${n+1}`).style.color = "red";
+      }
+    })
+  }
+</script>
+<script>
+  const questionsCSS = {
+    no1: [
+      "CSS ___는 HTML 문서에서 스타일을 적용할 요소를 지정하는 방법이다.",
+      "태그 이름, 클래스, 아이디, 속성 등 다양한 기준으로 요소를 선택할 수 있다.",
+    ],
+  }
+  const answersCSS = {
+    no1: "선택자",
+  };
+  const answersCSSLength = Object.keys(answersCSS).length;
+  const containerCSS = document.getElementById("containerCSS");
+
+  for(let n=0; n<answersCSSLength; n++) {
+    const key = "no" + (n+1);
+    let str = "";
+    questionsCSS[key].forEach(item => str += "<br>&bull; " + item);
+
+    str = `
+      <div>
+        <span class="wordCSSNum">${n+1}.</span>
+        <input type="text" class="wordCSS" id="wordCSS${n+1}">
+        <span class="isCorrectCSS" id="isCorrectCSS${n+1}"></span>
+        <button type="button" class="btn-submitCSS" id="btn-submitCSS${n+1}">제출</button>
+      </div>
+      <div>
+        <span>`
+          + str +
+       `</span>
+      </div>
+      <br>
+    `;
+    containerCSS.innerHTML += str;
+  }
+
+  for(let n=0; n<answersCSSLength; n++) {
+    document.getElementById(`btn-submitCSS${n+1}`).addEventListener("click", () => {
+      const wordCSS = document.getElementById(`wordCSS${n+1}`).value;
+      const removeAllSpaces = wordCSS.replace(/\s+/g, "");
+      
+      if(removeAllSpaces === answersCSS[`no${n+1}`]) {
+        document.getElementById(`isCorrectCSS${n+1}`).textContent = "정답";
+        document.getElementById(`isCorrectCSS${n+1}`).style.color = "green";
+      }
+      else {
+        document.getElementById(`isCorrectCSS${n+1}`).textContent = "오답";
+        document.getElementById(`isCorrectCSS${n+1}`).style.color = "red";
       }
     })
   }
