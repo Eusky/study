@@ -24,7 +24,7 @@
       justify-content: center;
     }
     #nav > a:hover {
-      background-color: #008000;
+      background-color: #5DC8CD;
       color: #fff;
     }
     .title {
@@ -32,7 +32,7 @@
     }
     .word {
       border: none;
-      border-bottom: 2px solid #333;
+      border-bottom: 2px solid gray;
       background-color: transparent;
       padding: 5px;
       font-size: 20px;
@@ -42,6 +42,27 @@
     }
     .wordNum {
       font-size: 20px;
+      font-weight: bold;
+    }
+    .btn-submit {
+      border: none;
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+      font-size: 15px;
+      border-radius: 5px;
+      width: 80px;
+      height: 30px;
+      padding: 0;
+      margin: 10px 20px 10px 0;
+      font-weight: 600;
+      background-color: #5DC8CD;
+      transition: all 0.2s;
+      color:#ffffff;
+    }
+    .btn-submit:hover {
+      background-color: #01939A;
+    }
+    .isCorrect {
+      font-size: larger;
       font-weight: bold;
     }
     h2 {
@@ -182,7 +203,7 @@
     no17: ["<table>", "table", "table태그"],
     no18: ["<input>", "input", "input태그"],
     no19: ["<button>", "button", "button태그"],
-    no20: ["<from>", "from", "from태그"],
+    no20: ["<form>", "form", "form태그"],
 
 
   };
@@ -198,8 +219,8 @@
       <div>
         <span class="wordNum">${n+1}.</span>
         <input type="text" class="word" id="wordHTML${n+1}">
+        <button type="button" class="btn-submit" id="btn-submitHTML${n+1}">입력</button>
         <span class="isCorrect" id="isCorrectHTML${n+1}"></span>
-        <button type="button" class="btn-submit" id="btn-submitHTML${n+1}">제출</button>
       </div>
       <div>
         <span>`
@@ -219,11 +240,11 @@
       
       if(answersHTML[`no${n+1}`].includes(editedWord)) {
         isCorrect.textContent = "정답";
-        isCorrect.style.color = "green";
+        isCorrect.style.color = "#3edc81";
       }
       else {
         isCorrect.textContent = "오답";
-        isCorrect.style.color = "red";
+        isCorrect.style.color = "#ff4d4d";
       }
     })
   }
@@ -231,12 +252,119 @@
 <script>
   const questionsCSS = {
     no1: [
-      "CSS ___는 HTML 문서에서 스타일을 적용할 요소를 지정하는 방법이다.",
-      "태그 이름, 클래스, 아이디, 속성 등 다양한 기준으로 요소를 선택할 수 있다.",
+      "CSS ___는 HTML 문서에서 스타일을 적용할 요소를 지정하는 방법입니다.",
+      "태그 이름, 클래스, 아이디, 속성 등 다양한 기준으로 요소를 선택할 수 있습니다.",
+    ],
+    no2: [
+      "요소의 상태(마우스 오버, 포커스, 체크 등) 또는 요소의 구조(첫 번째 자식, 홀수 번째 등)에 따라 스타일을 적용하는 선택자입니다.",
+      "콜론 한 개(:)를 사용합니다. 예시) a:hover, input[type='text']:focus, li:first-child ",
+    ],
+    no3: [
+      "존재하지 않는 요소 또는 요소의 일부에 스타일을 적용하는 선택자입니다.",
+      "콜론 두 개(::)를 사용합니다. 예시) div::before, p::first-letter 등",
+    ],
+    no4: [
+      "특정 태그에 style 속성을 추가하는 방식입니다.",
+      "style 속성에 '속성1: 값1; 속성2: 값2; ...'' 형식으로 스타일을 작성합니다."
+    ],
+    no5: [
+      "HTML 문서의 &lt;head&gt; 태그에 &lt;style&gt; 태그를 추가하고 스타일을 작성하는 방식입니다.",
+    ],
+    no6: [
+      "별도의 CSS 파일에 스타일을 작성하는 방식입니다.",
+      "&lt;link&gt; 태그에 해당 CSS 파일의 경로를 작성합니다."
+    ],
+    no7: [
+      "CSS 속성(property) 중 텍스트에 적용할 글꼴(서체) 목록을 지정합니다.",
+      "여러 글꼴을 쉼표로 구분해 지정할 수 있으며, 앞에서부터 순서대로 사용자의 시스템에 설치된 글꼴을 적용합니다.",
+      "마지막에는 일반 글꼴 패밀리(serif, sans-serif, monospace, cursive, fantasy) 중 하나를 지정하는 것이 좋습니다.",
+    ],
+    no8: [
+      "CSS 속성(property) 중 텍스트의 색상을 지정합니다. 다양한 색상 지정 방식을 사용할 수 있습니다:",
+      "색상 이름(Keywords), 16진수(Hex) 표기법, RGB/RGBA 함수형 표기법, HSL/HSLA 함수형 표기법",
+    ],
+    no9: [
+      "텍스트에 밑줄, 윗줄, 취소선 등 다양한 장식선을 추가하거나 꾸미는 데 사용하는 단축 속성입니다.",
+      "장식선의 '종류 색상 스타일 두께'를 한 번에 지정할 수 있습니다.",
+      "종류: underline, overline, line-through, none, 스타일: solid, double, dotted, dashed, wavy",
+    ],
+    no10: [
+      "텍스트의 대소문자를 변환하는 CSS 속성입니다.",
+      "capitalize: 각 단어의 첫 글자를 대문자로 변환합니다.",
+      "uppercase: 모든 영문자를 대문자로 변환합니다.",
+      "lowercase: 모든 영문자를 소문자로 변환합니다.",
+    ],
+    no11: [
+      "블록 레벨 요소(예: div, p, h1 등) 내의 인라인 콘텐츠(텍스트, 인라인 요소 등)의 수평 정렬 방식을 지정하는 속성입니다.",
+      "left, right, center, justify(양쪽 정렬)",
+    ],
+    no12: [
+      "요소 간의 계층적 관계를 기준으로 스타일을 적용하는 CSS 선택자들입니다.",
+      "A 요소의 직접적인 자식 B 요소를 선택합니다. 예: div &gt; p는 div 바로 아래에 있는 p만 적용.",
+    ],
+    no13: [
+      "요소 간의 계층적 관계를 기준으로 스타일을 적용하는 CSS 선택자들입니다.",
+      "A 요소 내부에 있는 모든 B 요소를 선택합니다. 예: div p는 div 안의 모든 p에 적용.",
+    ],
+    no14: [
+      "요소 간의 계층적 관계를 기준으로 스타일을 적용하는 CSS 선택자들입니다.",
+      "A 요소 뒤에 있는 같은 부모를 가진 모든 B 형제 요소를 선택합니다",
+    ],
+    no15: [
+      "요소 간의 계층적 관계를 기준으로 스타일을 적용하는 CSS 선택자들입니다.",
+      "A 요소 바로 다음에 위치한 하나의 B 형제 요소를 선택합니다.",
+    ],
+    no16: [
+      "CSS에서 사용하는 레이아웃 모델",
+      "컨테이너 안의 아이템을 효율적으로 배치, 정렬 등의 작업을 할 수 있도록 합니다.",
+      "기존 레이아웃 기술 float, display, position 등의 복잡성 및 한계 극복을 위해 도입돼었습니다.",
+    ],
+    no17: [
+      "컨텐츠와 테두리 사이의 여백을 지정하는 속성입니다.",
+      "투명하며, 배경색을 지정하면 이 영역까지 확장됩니다.",
+      "흔히 내부 여백이라고 합니다.",
+      "4가지 사용 방법 TRBL 시계방향으로 돌아감.",
+    ],
+    no18: [
+      "테두리의 바깥 여백을 설정하는 속성입니다.",
+      "다른 요소와의 간격 조절을 위해서 사용합니다.",
+      "흔히 외부 여백이라고 합니다.",
+      "4가지 사용 방법 TRBL 시계방향으로 돌아감.",
+    ],
+    no19: [
+      "CSS 속성 중 박스의 크기를 계산하는 방법입니다.",
+      "이 속성에 따라 박스의 크기를 계산하는 방법이 달라집니다.",
+      "content-box, border-box가 있습니다.",
+    ],
+    no20: [
+      "HTML 문서 요소의 일반적인 흐름에서 띄워서(부유시켜서) 왼쪽 또는 오른쪽에 배치하는 방식입니다.",
+      "최초 도입 목적은 이미지와 텍스트를 자연스럽게 감싸기 위해서 도입되었습니다.",
+      "이후 레이아웃 구성에서도 많이 활용되었습니다.",
     ],
   }
   const answersCSS = {
-    no1: ["선택자", "셀렉터", "Selector"],
+    no1: ["선택자", "셀렉터", "selector"],
+    no2: ["가상클래스", "pseudoclass", "pseudo-class"],
+    no3: ["가상요소", "pseudoelement", "pseudo-element"],
+    no4: ["인라인스타일", "인라인", "인라인방식", "인라인스타일방식", "inlinestyle", "inline", "inline-style"],
+    no5: ["내부스타일시트", "내부스타일", "내부스타일시트방식", "내부스타일방식", "internalstylesheet"],
+    no6: ["외부스타일시트", "외부스타일", "외부스타일시트방식", "외부스타일방식", "externalstylesheet"],
+    no7: ["font-family", "fontfamily"],
+    no8: ["color"],
+    no9: ["text-decoration", "textdecoration"],
+    no10: ["text-transform", "texttransform"],
+    no11: ["text-align", "textalign"],
+    no12: ["자식선택자"],
+    no13: ["후손선택자"],
+    no14: ["형제선택자"],
+    no15: ["인접형제선택자"],
+    no16: ["flexbox", "flex"],
+    no17: ["padding"],
+    no18: ["margin"],
+    no19: ["box-sizing", "boxsizing"],
+    no20: ["float"],
+
+
   };
   const answersCSSLength = Object.keys(answersCSS).length;
   const containerCSS = document.getElementById("containerCSS");
@@ -250,8 +378,8 @@
       <div>
         <span class="wordNum">${n+1}.</span>
         <input type="text" class="word" id="wordCSS${n+1}">
+        <button type="button" class="btn-submit" id="btn-submitCSS${n+1}">입력</button>
         <span class="isCorrect" id="isCorrectCSS${n+1}"></span>
-        <button type="button" class="btn-submit" id="btn-submitCSS${n+1}">제출</button>
       </div>
       <div>
         <span>`
@@ -266,16 +394,16 @@
   for(let n=0; n<answersCSSLength; n++) {
     document.getElementById(`btn-submitCSS${n+1}`).addEventListener("click", () => {
       const word = document.getElementById(`wordCSS${n+1}`).value;
-      const editedWord = wordCSS.replace(/\s+/g, "").toLowerCase();
+      const editedWord = word.replace(/\s+/g, "").toLowerCase();
       const isCorrect = document.getElementById(`isCorrectCSS${n+1}`);
       
       if(answersCSS[`no${n+1}`].includes(editedWord)) {
         isCorrect.textContent = "정답";
-        isCorrect.style.color = "green";
+        isCorrect.style.color = "#3edc81";
       }
       else {
         isCorrect.textContent = "오답";
-        isCorrect.style.color = "red";
+        isCorrect.style.color = "#ff4d4d";
       }
     })
   }
@@ -287,9 +415,120 @@
       "JavaScript primitive 라고 하고 다음 7종류가 해당됩니다.",
       "string, number, bigint, boolean, undefined, null, symbol",
     ],
+    no2: [
+      "JavaScript 타입의 특징 중 변수가 어떤 특정 타입과 연결되어 있지 않고 언제든 다른 타입으로 바꿀 수 있는 타입을 ____ 이라고 합니다.",
+    ],
+    no3: [
+      "JavaScript 타입의 특징 중 일치하지 않는 타입이 포함된 경우 묵시적으로 스스로 타입 변환을 하는 타입을 ___ 이라고 합니다.",
+    ],
+    no4: [
+      "백틱(``, backtick)으로 묶은 문자열을 의미합니다.",
+      "여러 줄로 이루어진 문자열(multi-line strings)을 처리할 수 있습니다.",
+      "문자열 보간(string interpolation) 기능을 사용할 수 있습니다.",
+    ],
+    no5: [
+      "'끌어 올리다' 라는 뜻.",
+      "JavaScript 인터프리터가 코드를 실행하기 전에 var 변수 선언, 함수 선언 또는 import를 해당 범위의 맨 위로 끌어올리는 것처럼 보이는 현상을 의미합니다.",
+    ],
+    no6: [
+      "'조건식 ? true 일 때 반환값 : false 일 때 반환값'의 형식을 가진 연산자입니다.",
+      "항이 3개이므로 삼항 연산자라고도 합니다.",
+    ],
+    no7: [
+      "여러 개의 데이터를 순서대로 저장하고, 각 데이터에 인덱스를 통해 접근할 수 있는 선형 자료구조(Linear Data Structure)입니다.",
+      "다양한 타입의 데이터를 한 배열에 저장할 수 있으며, 크기가 동적으로 변합니다.",
+      "기본 프로퍼티 및 메소드: length, push(), pop() 등",
+    ],
+    no8: [
+      "각 배열 요소의 위치 정보를 나타내는 정수값입니다.",
+      "첫 번째 요소의 ___는 0이고 마지막 요소의 ___는 length-1 입니다.",
+    ],
+    no9: [
+      "배열의 요소를 해체하여 그 값을 개별 변수에 담을 수 있게 하는 JavaScript 표현식입니다.",
+      "배열의 각 요소를 순서대로 변수에 할당합니다.",
+      "일부 요소만 할당하거나, 필요 없는 값은 쉼표로 건너뜁니다.",
+      "...rest 문법(나머지 문법)을 이용해 필요한 변수만 할당할 수 있습니다.",
+    ],
+    no10: [
+      "JavaScript 데이터 유형 중 하나입니다.",
+      "데이터와 함수(메소드)를 하나로 묶어 관리할 수 있는 자료구조입니다.",
+      "데이터가 저장되는 순서는 관리하지 않습니다.",
+      "__를 구성하는 하나의 데이터는 속성(property): 값(value) 조합으로 구성됩니다. (key: value 구조를 가짐)",
+    ],
+    no11: [
+      "특정 작업을 수행하는 코드 블록으로, 필요할 때마다 호출할 수 있습니다.",
+      "코드의 재사용성, 가독성, 유지보수성, 추상화에 기여합니다.",
+      "자바스크립트에서 __는 “1급 객체(First-class object)”로, 변수에 할당하거나, 인자로 전달하거나, 반환값으로 사용할 수 있습니다.",
+    ],
+    no12: [
+      "함수를 정의할 때 소괄호 안에 선언하는 변수입니다.",
+      "함수가 호출될 때 전달받는 값(인수, 인자, Argument)을 받아들이는 역할을 하며, 함수 내부에서 지역 변수로 사용됩니다.",
+      "____를 선언할 땐 변수 선언 키워드(var, let, const)를 사용하지 않고, 변수명만 작성합니다.",
+    ],
+    no13: [
+      "다른 함수의 인자로 전달되어, 그 함수 내부에서 실행되는 함수를 의미합니다.",
+      "함수 자체가 매개변수로 전달되며, 전달받은 함수를 필요에 따라 실행하는 구조입니다.",
+      "일회성 동작이 많아 이름 없는 익명 함수로 전달하는 경우가 많습니다.",
+      "중첩해 사용하면 '콜백 지옥(callback hell)'이 발생해 코드가 복잡해질 수 있습니다."
+    ],
+    no14: [
+      "_____은 객체 지향 프로그래밍의 상속 개념을 구현하는 핵심 메커니즘입니다.",
+      "모든 객체는 자신의 부모 역할을 하는 _____ 객체와 연결되어 있으며, 이를 통해 부모 객체의 속성과 메소드를 상속받아 사용할 수 있습니다.",
+      "자바스크립트의 모든 객체는 내부적으로 자신의 _____ 객체를 가리키는 링크를 가지고 있습니다.",
+    ],
+    no15: [
+      "자바스크립트 객체 표기법의 줄임말입니다.",
+      "JavaScript 객체 문법에서 파생되었으며, 구조화된 데이터를 표현하기 위한 문자 기반의 표준 포맷입니다.",
+      "사람과 시스템이 모두 쉽게 읽고 분석할 수 있는 형태를 가지고 있어 웹 환경에서 서버와 클라이언트 간 데이터 교환 형식으로 널리 사용됩니다.",
+      "반드시 프로퍼티를 큰 따옴표로 묶은 문자열로 표시, 후행 쉼표(trailing comma)를 허용하지 않는 등 JavaScript 객체와 일부 차이점을 가집니다.",
+    ],
+    no16: [
+      "HTML, XML 문서의 프로그래밍 인터페이스입니다.",
+      "프로그래밍 언어가 ___ 구조에 접근할 수 있는 방법을 제공하여 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕습니다.",
+    ],
+    no17: [
+      "DOM 객체에서 발생하는 어떤 시그널을 의미합니다.",
+      "시스템에 일어나는 사건(Action) 또는 발생(Occurrence)을 의미합니다.",
+      "주요 ___ 발생 방식: 사용자의 액션에 의해서 발생(클릭, 키보드 입력, 마우스 움직임 등), API의 ___ 생성",
+    ],
+    no18: [
+      "특정한 규칙을 가진 문자열의 집합을 표현하기 위한 형식 언어입니다.",
+      "텍스트 데이터에서 특정 패턴이나 규칙을 가진 문자열을 찾거나, 대체하거나, 검증할 때 사용됩니다.",
+      "전화번호, 이메일, 우편번호 등 형식을 갖춘 문자열을 찾거나 처리할 수 있습니다."
+    ],
+    no19: [
+      "자바스크립트에서 웹 브라우저와 서버 간에 데이터를 비동기적으로 주고받을 수 있게 해주는 핵심 Web API입니다.",
+      "전체 페이지를 새로 고침하지 않고도, 웹 서버에 HTTP 요청을 보내고, 응답 데이터를 받아와 웹페이지의 일부를 동적으로 갱신할 수 있습니다.",
+      "이러한 방식은 AJAX(Asynchronous JavaScript and XML) 프로그래밍의 기반이 됩니다.",
+    ],
+    no20: [
+      "HTTP 파이프라인을 구성하는 요청과 응답 등의 요소를 JavaScript 에서 접근하고 조작할 수 있는 인터페이스를 제공합니다.",
+      "제공하는 전역 함수를 이용해 네트워크의 리소스를 쉽게 비동기적으로 취득할 수 있습니다",
+      "XMLHttpRequest와 달리 Promise 기반으로 개선되었습니다.",
+    ],
   }
   const answersJS = {
     no1: ["원시값"],
+    no2: ["동적타입", "dynamictype"],
+    no3: ["약타입", "weaktype"],
+    no4: ["template-literals", "templateliterals", "templateliteral", "템플릿리터럴"],
+    no5: ["호이스팅", "hoisting"],
+    no6: ["조건연산자"],
+    no7: ["배열", "array"],
+    no8: ["인덱스", "index"],
+    no9: ["구조분해할당", "destructuringassignment", "destructuring"],
+    no10: ["객체", "object"],
+    no11: ["함수", "function"],
+    no12: ["매개변수", "parameter"],
+    no13: ["콜백", "콜백함수", "callback", "callbackfunction"],
+    no14: ["프로토타입", "prototype"],
+    no15: ["json"],
+    no16: ["dom", "문서객체모델"],
+    no17: ["이벤트", "event"],
+    no18: ["정규표현식", "정규식", "regexp", "regularexpression"],
+    no19: ["xmlhttprequest"],
+    no20: ["fetch", "fetchapi"],
+
   };
   const answersJSLength = Object.keys(answersJS).length;
   const containerJS = document.getElementById("containerJS");
@@ -303,8 +542,8 @@
       <div>
         <span class="wordNum">${n+1}.</span>
         <input type="text" class="word" id="wordJS${n+1}">
+        <button type="button" class="btn-submit" id="btn-submitJS${n+1}">입력</button>
         <span class="isCorrect" id="isCorrectJS${n+1}"></span>
-        <button type="button" class="btn-submit" id="btn-submitJS${n+1}">제출</button>
       </div>
       <div>
         <span>`
@@ -324,11 +563,11 @@
       
       if(answersJS[`no${n+1}`].includes(editedWord)) {
         isCorrect.textContent = "정답";
-        isCorrect.style.color = "green";
+        isCorrect.style.color = "#3edc81";
       }
       else {
         isCorrect.textContent = "오답";
-        isCorrect.style.color = "red";
+        isCorrect.style.color = "#ff4d4d";
       }
     })
   }
@@ -356,7 +595,52 @@
       "React에서 특정 기능이나 UI를 담당하는 독립적인 코드 블록입니다.",
       "여러 개의 Element를 조합하여 더 큰 UI 단위를 만들 수 있으며, 재사용이 가능합니다.",
       "props와 state를 통해 동적인 데이터를 다루고, 상태(state)가 변경될 때마다 자동으로 다시 렌더링됩니다.",
-    ]
+    ],
+    no6: [
+
+    ],
+    no7: [
+
+    ],
+    no8: [
+
+    ],
+    no9: [
+
+    ],
+    no10: [
+
+    ],
+    no11: [
+
+    ],
+    no12: [
+
+    ],
+    no13: [
+
+    ],
+    no14: [
+
+    ],
+    no15: [
+
+    ],
+    no16: [
+
+    ],
+    no17: [
+
+    ],
+    no18: [
+
+    ],
+    no19: [
+
+    ],
+    no20: [
+
+    ],
   }
   const answersReact = {
     no1: ["element", "엘러먼트", "엘리먼트"],
@@ -364,6 +648,21 @@
     no3: ["babel", "바벨"],
     no4: ["jsx"],
     no5: ["컴포넌트", "component"],
+    no6: [],
+    no7: [],
+    no8: [],
+    no9: [],
+    no10: [],
+    no11: [],
+    no12: [],
+    no13: [],
+    no14: [],
+    no15: [],
+    no16: [],
+    no17: [],
+    no18: [],
+    no19: [],
+    no20: [],
   };
   const answersReactLength = Object.keys(answersReact).length;
   const containerReact = document.getElementById("containerReact");
@@ -377,8 +676,8 @@
       <div>
         <span class="wordNum">${n+1}.</span>
         <input type="text" class="word" id="wordReact${n+1}">
+        <button type="button" class="btn-submit" id="btn-submitReact${n+1}">입력</button>
         <span class="isCorrect" id="isCorrectReact${n+1}"></span>
-        <button type="button" class="btn-submit" id="btn-submitReact${n+1}">제출</button>
       </div>
       <div>
         <span>`
@@ -398,11 +697,11 @@
       
       if(answersReact[`no${n+1}`].includes(editedWord)) {
         isCorrect.textContent = "정답";
-        isCorrect.style.color = "green";
+        isCorrect.style.color = "#3edc81";
       }
       else {
         isCorrect.textContent = "오답";
-        isCorrect.style.color = "red";
+        isCorrect.style.color = "#ff4d4d";
       }
     })
   }
