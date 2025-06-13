@@ -22,6 +22,83 @@
   3) key를 이용해 해당 요소를 추출할 수 있습니다.
   4) key로 사용하기 적절한 값은 DB에서 조회한 데이터의 PK값입니다.
 -->
+<div id="root1"></div>
+<script type="text/babel">
+  
+    const ListComp1 = ({items}) => {
+      return (
+        <ul>
+          {items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>  
+      );
+    };
+    const items = ["봄", "여름", "가을", "겨울"];
+    ReactDOM.createRoot(document.getElementById('root1')).render(<ListComp1 items={items}/>);
+  
+</script>
 
+<hr>
+<div id="root2"></div>
+<script type="text/babel">
+  
+    const ListComp2 = ({names}) => {
+      // ul
+      return (
+        <ul>
+          {names.map((name, i) => {
+            return <ListItemComp2 key={i} name = {name}/>
+          })}
+        </ul>
+      );
+    }
+    const ListItemComp2 = ({name}) => {
+      // li
+      return (
+        <li>
+          {name}
+        </li>
+      );
+    }
+    const names = ["Alice", "Jessica", "Tom", "Eric"];
+    ReactDOM.createRoot(document.getElementById("root2")).render(<ListComp2 names={names}/>)
+  
+</script>
+<hr>
+<div id="root3"></div>
+<script type="text/babel">
+  
+    const ListComp3 = ({items}) => {
+      return (
+        <ul>
+          {items.map(item =>  <ListItemComp3 key={item.carNo} item={item.model}/>)}
+        </ul>  
+      )
+    }
+    const ListItemComp3 = ({item}) => {
+      return (
+        <li>
+          {item}
+        </li>
+      );
+    }
+    const cars = [
+      {
+        carNo: "123가1234",
+        model: "BMW",
+      },
+      {
+        carNo: "234가2345",
+        model: "Ferrary",
+      },
+      {
+        carNo: "345가3456",
+        model: "Grandeur",
+      },
+    ]
+
+    ReactDOM.createRoot(document.getElementById('root3')).render(<ListComp3 items={cars}/>)
+    
+
+</script>
 </body>
 </html>

@@ -154,29 +154,22 @@
   // props drilling: 하위 컴포넌트에 값을 연속해서 전달하는 방식입니다. 
   // 좋은 방식이 아니므로 향후 다른 방식으로 대체하기를 권장합니다.
 
-  const FinalComp = ({data}) => {
+   const App = () => {
+    const data = "Who needs me?"
     return (
       <>
-        <h1>I'm FinalComp</h1>
-        <h1>{data}</h1>
+        <FirstComp data={data}/>
       </>
     )
   }
+
+  
 
   const ThirdComp = ({data}) => {
     return (
       <>
         <h1>I'm ThirdComp</h1>
         <FinalComp data={data}/>
-      </>
-    )
-  }
-
-  const SecondComp = ({data}) => {
-    return (
-      <>
-        <h1>I'm SecondComp</h1>
-        <ThirdComp data={data}/>
       </>
     )
   }
@@ -190,14 +183,27 @@
     )
   }
   
-  const App = () => {
-    const data = "Who needs me?"
+  const SecondComp = ({data}) => {
     return (
       <>
-        <FirstComp data={data}/>
+        <h1>I'm SecondComp</h1>
+        <ThirdComp data={data}/>
       </>
     )
   }
+
+  
+
+  const FinalComp = ({data}) => {
+    return (
+      <>
+        <h1>I'm FinalComp</h1>
+        <h1>{data}</h1>
+      </>
+    )
+  }
+  
+ 
   ReactDOM.createRoot(document.getElementById('root2')).render(<App/>);
 </script>
 <hr>
@@ -237,11 +243,11 @@
     console.log(color);
     return (
       <>
-        <div style={
+        <div style={{
           backgroundColor: color,
           width: "100px",
           height: "100px",
-        }>
+        }}>
         </div>
       </>
     )

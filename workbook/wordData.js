@@ -1,102 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>wordbook</title>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    #nav {
-      display: flex;
-      justify-content: center;
-      height: 80px;
-      background-color: #333;
-    }
-    #nav > a {
-      color: white;
-      font-size: 20px;
-      text-decoration: none;
-      display: flex;
-      line-height: 80px;
-      width: 25%;
-      justify-content: center;
-    }
-    #nav > a:hover {
-      background-color: #5DC8CD;
-      color: #fff;
-    }
-    .title {
-      text-align: center;
-    }
-    .word {
-      border: none;
-      border-bottom: 2px solid gray;
-      background-color: transparent;
-      padding: 5px;
-      font-size: 20px;
-      font-weight: bold;
-      outline: none;
-      width: 200px;
-    }
-    .wordNum {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    .btn-submit {
-      border: none;
-      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-      font-size: 15px;
-      border-radius: 5px;
-      width: 80px;
-      height: 30px;
-      padding: 0;
-      margin: 10px 20px 10px 0;
-      font-weight: 600;
-      background-color: #5DC8CD;
-      transition: all 0.2s;
-      color:#ffffff;
-    }
-    .btn-submit:hover {
-      background-color: #01939A;
-    }
-    .isCorrect {
-      font-size: larger;
-      font-weight: bold;
-    }
-    h2 {
-      text-align: center;
-      background-color: lightgray;
-      height: 60px;
-      line-height: 60px;
-    }
-  </style>
-</head>
-<body>
-  <h1 class="title">웹(HTML, CSS, JavaScript + React) 단어집</h1>
-  <div id="nav">
-    <a href="#html">HTML</a>
-    <a href="#css">CSS</a>
-    <a href="#js">JavaScript</a>
-    <a href="#react">React</a>
-  </div>
-
-  <h2 id="html">HTML</h2>
-  <div id="containerHTML"></div>
-
-  <h2 id="css">CSS</h2>
-  <div id="containerCSS"></div>
-
-  <h2 id="js">JavaScript</h2>
-  <div id="containerJS"></div>
-
-  <h2 id="react">React</h2>
-  <div id="containerReact"></div>
-
-
-<script>
-  const questionsHTML = {
+const questionsHTML = {
     no1: [
     "하나의 태그가 브라우저 좌우공간을 모두 차지하면서 독립적인 공간을 가지는 요소들입니다.",
     "브라우저 화면의 특정 구역을 만드는 용도(레이아웃 구성)로 사용합니다.",
@@ -182,74 +84,29 @@
       "로그인, 회원가입, 검색, 설문 등 다양한 입력 기능의 기본 구조로 사용됩니다.",
       "내부에는 다양한 입력 요소(&lt;input&gt;, &lt;select&gt;, &lt;textarea&gt;, &lt;button&gt; 등)가 포함됩니다.",
     ],
-  }
-  const answersHTML = {
-    no1: ["블록요소", "blockelement"],
-    no2: ["인라인요소","inlineelement"],
-    no3: ["빈요소", "voidelement"],
-    no4: ["일반요소", "normalelement"],
-    no5: ["엔티티코드", "entitycode"],
-    no6: ["get", "get방식"],
-    no7: ["post", "post방식"],
-    no8: ["소문자"],
-    no9: ["<h>", "h", "h태그"],
-    no10: ["<p>", "p", "p태그"],
-    no11: ["<ul>", "ul", "ul태그"],
-    no12: ["<ol>", "ol", "ol태그"],
-    no13: ["<dl>", "dl", "dl태그"],
-    no14: ["<img>", "img", "img태그"],
-    no15: ["<audio>", "audio", "audio태그"],
-    no16: ["<a>", "a", "a태그"],
-    no17: ["<table>", "table", "table태그"],
-    no18: ["<input>", "input", "input태그"],
-    no19: ["<button>", "button", "button태그"],
-    no20: ["<form>", "form", "form태그"],
-
-
   };
-  const answersHTMLLength = Object.keys(answersHTML).length;
-  const containerHTML = document.getElementById("containerHTML");
-
-  for(let n=0; n<answersHTMLLength; n++) {
-    const key = "no" + (n+1);
-    let str = "";
-    questionsHTML[key].forEach(item => str += "<br>&bull; " + item);
-
-    str = `
-      <div>
-        <span class="wordNum">${n+1}.</span>
-        <input type="text" class="word" id="wordHTML${n+1}">
-        <button type="button" class="btn-submit" id="btn-submitHTML${n+1}">입력</button>
-        <span class="isCorrect" id="isCorrectHTML${n+1}"></span>
-      </div>
-      <div>
-        <span>`
-          + str +
-       `</span>
-      </div>
-      <br>
-    `;
-    containerHTML.innerHTML += str;
-  }
-
-  for(let n=0; n<answersHTMLLength; n++) {
-    document.getElementById(`btn-submitHTML${n+1}`).addEventListener("click", () => {
-      const word = document.getElementById(`wordHTML${n+1}`).value;
-      const editedWord = word.replace(/\s+/g, "").toLowerCase();
-      const isCorrect = document.getElementById(`isCorrectHTML${n+1}`);
-      
-      if(answersHTML[`no${n+1}`].includes(editedWord)) {
-        isCorrect.textContent = "정답";
-        isCorrect.style.color = "#3edc81";
-      }
-      else {
-        isCorrect.textContent = "오답";
-        isCorrect.style.color = "#ff4d4d";
-      }
-    })
-  }
-</script>
-<script>
+  const answersHTML = {
+    no1: ["블록 요소", "Block Element"],
+    no2: ["인라인 요소","Inline Element"],
+    no3: ["빈 요소", "Void Element"],
+    no4: ["일반 요소", "Normal Element"],
+    no5: ["엔티티 코드", "Entity Code"],
+    no6: ["get", "get 방식"],
+    no7: ["post", "post 방식"],
+    no8: ["소문자"],
+    no9: ["<h>", "h", "h 태그"],
+    no10: ["<p>", "p", "p 태그"],
+    no11: ["<ul>", "ul", "ul 태그"],
+    no12: ["<ol>", "ol", "ol 태그"],
+    no13: ["<dl>", "dl", "dl 태그"],
+    no14: ["<img>", "img", "img 태그"],
+    no15: ["<audio>", "audio", "audio 태그"],
+    no16: ["<a>", "a", "a 태그"],
+    no17: ["<table>", "table", "table 태그"],
+    no18: ["<input>", "input", "input 태그"],
+    no19: ["<button>", "button", "button 태그"],
+    no20: ["<form>", "form", "form 태그"],
+  };
   const questionsCSS = {
     no1: [
       "CSS ___는 HTML 문서에서 스타일을 적용할 요소를 지정하는 방법입니다.",
@@ -341,74 +198,29 @@
       "최초 도입 목적은 이미지와 텍스트를 자연스럽게 감싸기 위해서 도입되었습니다.",
       "이후 레이아웃 구성에서도 많이 활용되었습니다.",
     ],
-  }
+  };
   const answersCSS = {
-    no1: ["선택자", "셀렉터", "selector"],
-    no2: ["가상클래스", "pseudoclass", "pseudo-class"],
-    no3: ["가상요소", "pseudoelement", "pseudo-element"],
-    no4: ["인라인스타일", "인라인", "인라인방식", "인라인스타일방식", "inlinestyle", "inline", "inline-style"],
-    no5: ["내부스타일시트", "내부스타일", "내부스타일시트방식", "내부스타일방식", "internalstylesheet"],
-    no6: ["외부스타일시트", "외부스타일", "외부스타일시트방식", "외부스타일방식", "externalstylesheet"],
+    no1: ["선택자", "셀렉터", "Selector"],
+    no2: ["가상 클래스", "Pseudo Class", "Pseudo-Class"],
+    no3: ["가상 요소", "Pseudo Element", "Pseudo-Element"],
+    no4: ["인라인 스타일 방식", "인라인", "인라인방식", "인라인스타일", "inlinestyle", "inline", "inline-style"],
+    no5: ["내부 스타일시트 방식", "내부스타일", "내부스타일시트", "내부스타일방식", "internalstylesheet"],
+    no6: ["외부 스타일시트 방식", "외부스타일", "외부스타일시트", "외부스타일방식", "externalstylesheet"],
     no7: ["font-family", "fontfamily"],
     no8: ["color"],
     no9: ["text-decoration", "textdecoration"],
     no10: ["text-transform", "texttransform"],
     no11: ["text-align", "textalign"],
-    no12: ["자식선택자"],
-    no13: ["후손선택자"],
-    no14: ["형제선택자"],
-    no15: ["인접형제선택자"],
-    no16: ["flexbox", "flex"],
+    no12: ["자식 선택자"],
+    no13: ["후손 선택자"],
+    no14: ["형제 선택자"],
+    no15: ["인접 형제 선택자"],
+    no16: ["Flexbox", "flex"],
     no17: ["padding"],
     no18: ["margin"],
     no19: ["box-sizing", "boxsizing"],
     no20: ["float"],
-
-
   };
-  const answersCSSLength = Object.keys(answersCSS).length;
-  const containerCSS = document.getElementById("containerCSS");
-
-  for(let n=0; n<answersCSSLength; n++) {
-    const key = "no" + (n+1);
-    let str = "";
-    questionsCSS[key].forEach(item => str += "<br>&bull; " + item);
-
-    str = `
-      <div>
-        <span class="wordNum">${n+1}.</span>
-        <input type="text" class="word" id="wordCSS${n+1}">
-        <button type="button" class="btn-submit" id="btn-submitCSS${n+1}">입력</button>
-        <span class="isCorrect" id="isCorrectCSS${n+1}"></span>
-      </div>
-      <div>
-        <span>`
-          + str +
-       `</span>
-      </div>
-      <br>
-    `;
-    containerCSS.innerHTML += str;
-  }
-
-  for(let n=0; n<answersCSSLength; n++) {
-    document.getElementById(`btn-submitCSS${n+1}`).addEventListener("click", () => {
-      const word = document.getElementById(`wordCSS${n+1}`).value;
-      const editedWord = word.replace(/\s+/g, "").toLowerCase();
-      const isCorrect = document.getElementById(`isCorrectCSS${n+1}`);
-      
-      if(answersCSS[`no${n+1}`].includes(editedWord)) {
-        isCorrect.textContent = "정답";
-        isCorrect.style.color = "#3edc81";
-      }
-      else {
-        isCorrect.textContent = "오답";
-        isCorrect.style.color = "#ff4d4d";
-      }
-    })
-  }
-</script>
-<script>
   const questionsJS = {
     no1: [
       "객체가 아니면서 메소드(method)와 속성(property)을 가지지 않는 데이터입니다.",
@@ -506,85 +318,41 @@
       "제공하는 전역 함수를 이용해 네트워크의 리소스를 쉽게 비동기적으로 취득할 수 있습니다",
       "XMLHttpRequest와 달리 Promise 기반으로 개선되었습니다.",
     ],
-  }
+  };
   const answersJS = {
     no1: ["원시값"],
-    no2: ["동적타입", "dynamictype"],
-    no3: ["약타입", "weaktype"],
-    no4: ["template-literals", "templateliterals", "templateliteral", "템플릿리터럴"],
+    no2: ["동적 타입", "dynamictype"],
+    no3: ["약 타입", "weaktype"],
+    no4: ["템플릿 리터럴", "template-literals", "templateliterals", "templateliteral"],
     no5: ["호이스팅", "hoisting"],
-    no6: ["조건연산자"],
+    no6: ["조건 연산자"],
     no7: ["배열", "array"],
     no8: ["인덱스", "index"],
-    no9: ["구조분해할당", "destructuringassignment", "destructuring"],
+    no9: ["구조 분해 할당", "destructuringassignment", "destructuring"],
     no10: ["객체", "object"],
     no11: ["함수", "function"],
     no12: ["매개변수", "parameter"],
     no13: ["콜백", "콜백함수", "callback", "callbackfunction"],
     no14: ["프로토타입", "prototype"],
-    no15: ["json"],
-    no16: ["dom", "문서객체모델"],
+    no15: ["JSON"],
+    no16: ["DOM", "문서객체모델"],
     no17: ["이벤트", "event"],
     no18: ["정규표현식", "정규식", "regexp", "regularexpression"],
-    no19: ["xmlhttprequest"],
-    no20: ["fetch", "fetchapi"],
-
+    no19: ["XMLHttpRequest"],
+    no20: ["Fetch", "fetchapi"],
   };
-  const answersJSLength = Object.keys(answersJS).length;
-  const containerJS = document.getElementById("containerJS");
-
-  for(let n=0; n<answersJSLength; n++) {
-    const key = "no" + (n+1);
-    let str = "";
-    questionsJS[key].forEach(item => str += "<br>&bull; " + item);
-
-    str = `
-      <div>
-        <span class="wordNum">${n+1}.</span>
-        <input type="text" class="word" id="wordJS${n+1}">
-        <button type="button" class="btn-submit" id="btn-submitJS${n+1}">입력</button>
-        <span class="isCorrect" id="isCorrectJS${n+1}"></span>
-      </div>
-      <div>
-        <span>`
-          + str +
-       `</span>
-      </div>
-      <br>
-    `;
-    containerJS.innerHTML += str;
-  }
-
-  for(let n=0; n<answersJSLength; n++) {
-    document.getElementById(`btn-submitJS${n+1}`).addEventListener("click", () => {
-      const word = document.getElementById(`wordJS${n+1}`).value;
-      const editedWord = word.replace(/\s+/g, "").toLowerCase();
-      const isCorrect = document.getElementById(`isCorrectJS${n+1}`);
-      
-      if(answersJS[`no${n+1}`].includes(editedWord)) {
-        isCorrect.textContent = "정답";
-        isCorrect.style.color = "#3edc81";
-      }
-      else {
-        isCorrect.textContent = "오답";
-        isCorrect.style.color = "#ff4d4d";
-      }
-    })
-  }
-</script>
-<script>
   const questionsReact = {
     no1: [
       "리액트 애플리케이션을 구성하는 가장 작은 단위입니다.",
       "화면에 표시되는 내용을 기술하는 자바스크립트 객체로, 실제 DOM 요소의 가상 표현입니다.",
       "불변(immutable)하며, 한 번 생성되면 변경되지 않습니다. 화면을 업데이트할 때는 새로운 이것을 생성해 교체합니다",
-      "실제로 화면에 렌더링될 때, React Element는 DOM Element로 변환되어 브라우저에 표시됩니다.",
+      "문법이 직관적이지 않아 사용하기 불편하기 때문에 JSX라는 새로운 문법이 나중에 제시되었습니다.",
     ],
     no2: [
       "React Element와 같은 구성 요소들을 화면에 그리는 작업입니다.",
     ],
     no3: [
-      "최신 문법(화살표 함수, 클래스, 템플릿 리터럴 등)이나 React의 JSX 문법, TypeScript 등을 브라우저에서 바로 사용할 수 있도록, 실시간으로 ES5 이하의 자바스크립트 코드로 변환해줍니다.",
+      "최신 문법(화살표 함수, 클래스, 템플릿 리터럴 등)이나 React의 ___ 문법, TypeScript 등을 브라우저에서 바로 사용할 수 있도록, 실시간으로 ES5 이하의 자바스크립트 코드로 변환해줍니다.",
       "이것을 통해 변환된 코드는 다양한 브라우저(특히 구형 브라우저)에서도 동일하게 동작할 수 있습니다. 즉, 브라우저 호환성을 높여줍니다.",
     ],
     no4: [
@@ -597,114 +365,97 @@
       "props와 state를 통해 동적인 데이터를 다루고, 상태(state)가 변경될 때마다 자동으로 다시 렌더링됩니다.",
     ],
     no6: [
-
+      "React에서 컴포넌트 간에 데이터를 전달할 때 사용하는 객체입니다.",
+      "주로 부모 컴포넌트가 자식 컴포넌트에게 데이터나 설정값을 넘겨줄 때 활용되며, 컴포넌트의 동작과 렌더링 결과를 동적으로 제어할 수 있습니다.",
+      "상위(부모) 컴포넌트에서 하위(자식) 컴포넌트로 데이터를 전달하는 역할을 합니다.",
+      "JSX에서 HTML 속성처럼 사용하며, 자식 컴포넌트에서는 함수의 매개변수(파라미터)로 전달받아 사용할 수 있습니다.",
     ],
     no7: [
-
+      "리스트 렌더링 시 각 항목을 고유하게 식별하기 위해 사용합니다.",
+      "이는 React가 효율적으로 변경 사항을 추적하고 업데이트하는 데 도움을 줍니다.",
+      "이것이 존재하는 경우 빠르게 어떤 요소에 변화가 일어났는지 감지할 수 있습니다.",
+      "React에서 컴포넌트 배열을 rendering 했을 때 어떤 요소에 변경이 있는지 알아내기 위해 사용하는 식별자 역할을 수행합니다.",
     ],
     no8: [
-
+      "이벤트 속성 이름 표기법: HTML에서는 소문자(onclick, onchange)를 사용하지만 React에서는 _____방식으로 작성합니다.",
     ],
     no9: [
-
+      "이벤트 핸들러 전달 방식: 이벤트 핸들러는 이벤트 발생 시 실행할 코드를 작성해 놓은 함수입니다.",
+      "HTML에서는 함수를 문자열로 전달하지만, React에서는 함수를 ___로 전달합니다.",
+      "함수명 뒤에 괄호를 붙이지 않고 함수 참조만 전달해야 합니다. 괄호를 붙이면 즉시 실행됩니다.",
     ],
     no10: [
-
+      "컴포넌트를 이용해 엘리먼트가 화면에 나타나거나, 업데이트 되거나, 삭제될 때 호출되는 메소드를 의미합니다.",
+      "클래스형 컴포넌트에서만 호출할 수 있습니다.",
+      "주요 3단계",
+      "Mount : 엘리먼트가 화면에 나타나는 것을 의미합니다.",
+      "Update : 엘리먼트가 수정되어 화면이 다시 그려지는 것을 의미합니다.",
+      "Unmount : 엘리먼트가 화면에서 사라지는 것을 의미합니다.",
     ],
     no11: [
-
+      "컴포넌트 내부에서 관리되는 동적인 데이터를 의미합니다.",
+      "컴포넌트의 _____는 시간이 지남에 따라, 또는 사용자와의 상호작용에 따라 변경될 수 있으며, _____가 변경되면 해당 컴포넌트와 그 자식 컴포넌트가 자동으로 다시 렌더링됩니다.",
     ],
     no12: [
-
+      "state의 값을 직접 변경하지 않고, 반드시 _______________ 메소드를 사용해야 합니다.",
+      "this.state를 직접 변경하면 렌더링이 일어나지 않습니다.",
+      "이 메소드를 호출하면 리액트가 변경을 감지하고 컴포넌트를 리렌더링합니다.",
     ],
     no13: [
-
+      "JSX의 속성 중 하나로 자바스크립트 예약어와 충돌하지 않도록 변경된 이름을 사용하는 속성입니다.",
+      "JavaScript: class, JSX: _________",
     ],
     no14: [
-
+      "JSX의 속성 중 하나로 자바스크립트 예약어와 충돌하지 않도록 변경된 이름을 사용하는 속성입니다.",
+      "JavaScript: for, JSX: _______",
     ],
     no15: [
-
+      "인라인 스타일은 객체 형태로 style 속성에 전달합니다.",
+      "기존 dash-case(kebab-case) 형식의 CSS 속성명을 _________ 방식으로 변경합니다.",
     ],
     no16: [
-
+      "여러 태그를 단일 태그로 생성하기 위해 사용하는 가상 태그로, 실제 DOM에는 렌더링되지 않습니다.",
+      "불필요한 &lt;div&gt; 없이 여러 요소를 반환하고 싶을 때 사용합니다.",
     ],
     no17: [
-
+      "JavaScript 클래스를 이용하는 컴포넌트입니다.",
+      "state와 life cycle API를 사용할 수 있습니다.",
+      "상대적으로 복잡하고 React.Component를 상속 받아서 작성합니다.",
     ],
     no18: [
-
+      "JavaScript 함수를 이용하는 컴포넌트입니다.",
+      "최초엔 state와 life cycle API를 사용할 수 없었지만 React v16.8 이후로 state와 life cycle API를 훅(hooks)을 통해 사용할 수 있습니다.",
+      "상대적으로 간결하여 리액트 개발자 진영에서는 _______ 사용을 권장합니다.",
     ],
     no19: [
-
+      "props 객체를 객체 ______으로 간결하게 사용할 수 있습니다.",
+      "예시)",
+      "function ChildComponent(&#123; color, name &#125;) &#123;&nbsp;&nbsp;&nbsp;&nbsp;return &lt;div style=&#123;&#123; color &#125;&#125;&gt;&#123; name &#125;&lt;/div&gt;;&#125;",
     ],
     no20: [
-
+      "JSX에서는 객체 자체를 직접 렌더링할 수 없어 ___로 변환해야 합니다.",
+      "객체의 속성에 접근하는 것은 가능합니다.",
     ],
-  }
-  const answersReact = {
-    no1: ["element", "엘러먼트", "엘리먼트"],
-    no2: ["rendering", "render", "렌더링"],
-    no3: ["babel", "바벨"],
-    no4: ["jsx"],
-    no5: ["컴포넌트", "component"],
-    no6: [],
-    no7: [],
-    no8: [],
-    no9: [],
-    no10: [],
-    no11: [],
-    no12: [],
-    no13: [],
-    no14: [],
-    no15: [],
-    no16: [],
-    no17: [],
-    no18: [],
-    no19: [],
-    no20: [],
   };
-  const answersReactLength = Object.keys(answersReact).length;
-  const containerReact = document.getElementById("containerReact");
-
-  for(let n=0; n<answersReactLength; n++) {
-    const key = "no" + (n+1);
-    let str = "";
-    questionsReact[key].forEach(item => str += "<br>&bull; " + item);
-
-    str = `
-      <div>
-        <span class="wordNum">${n+1}.</span>
-        <input type="text" class="word" id="wordReact${n+1}">
-        <button type="button" class="btn-submit" id="btn-submitReact${n+1}">입력</button>
-        <span class="isCorrect" id="isCorrectReact${n+1}"></span>
-      </div>
-      <div>
-        <span>`
-          + str +
-       `</span>
-      </div>
-      <br>
-    `;
-    containerReact.innerHTML += str;
-  }
-
-  for(let n=0; n<answersReactLength; n++) {
-    document.getElementById(`btn-submitReact${n+1}`).addEventListener("click", () => {
-      const word = document.getElementById(`wordReact${n+1}`).value;
-      const editedWord = word.replace(/\s+/g, "").toLowerCase();
-      const isCorrect = document.getElementById(`isCorrectReact${n+1}`);
-      
-      if(answersReact[`no${n+1}`].includes(editedWord)) {
-        isCorrect.textContent = "정답";
-        isCorrect.style.color = "#3edc81";
-      }
-      else {
-        isCorrect.textContent = "오답";
-        isCorrect.style.color = "#ff4d4d";
-      }
-    })
-  }
-</script>
-</body>
-</html>
+  const answersReact = {
+    no1: ["Element", "엘리먼트", "엘러먼트"],
+    no2: ["Rendering", "render", "렌더링"],
+    no3: ["Babel", "바벨"],
+    no4: ["JSX"],
+    no5: ["Component", "컴포넌트"],
+    no6: ["props", "프롭스", "properties"],
+    no7: ["key", "keyprops", "key-props"],
+    no8: ["camelCase", "카멜케이스"],
+    no9: ["중괄호"],
+    no10: ["Lifecycle"],
+    no11: ["state"],
+    no12: ["this.setState()", "setState()", "setState", "this.setState"],
+    no13: ["className"],
+    no14: ["htmlFor"],
+    no15: ["camelCase", "카멜케이스"],
+    no16: ["React.Fragment", "<></>", "<react.fragment></react.fragment>"],
+    no17: ["클래스형 컴포넌트"],
+    no18: ["함수형 컴포넌트"],
+    no19: ["구조 분해 할당"],
+    no20: ["문자열"],
+  };
