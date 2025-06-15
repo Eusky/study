@@ -58,18 +58,58 @@
   setInterval(() => {
     const textElement = React.createElement(
       'div', 
-      {className: 'text'},
+      {className: 'text',
+        key: 1
+      },
       '간단한 시계'
     )
     const timeElement = React.createElement(
       'div', 
-      {className: 'time'},
+      {className: 'time',
+        key: 2
+      },
       new Date().toLocaleTimeString()
     )
     root2.render([textElement, timeElement]); // 여러 개의 Element는 배열로 전달해서 렌더링합니다.
   }, 1000) 
-
-  
 </script>
+
+<hr>
+ 
+<div id="root3"></div>
+
+<script>
+  // React.createElement() 메소드를 이용해 Element 만들기 
+  // React.createElement(type, props, ...children)
+  const h2Element = React.createElement("h1", {
+    id: "title1",
+    className: "title1"
+  },
+  "고기는 맛있다.");
+  ReactDOM.createRoot(document.getElementById("root3")).render(h2Element);
+</script>
+
+<hr>
+
+<div id="root4"></div>
+<script>
+  const root4 = ReactDOM.createRoot(document.getElementById("root4"));
+  setInterval(() => {
+    const textElement = React.createElement("div", {
+      className: "text",
+      key: 1
+    }, "간단한 시계");
+
+    const timeElement = React.createElement("div", {
+      className: "time",
+      key: 2
+    }, new Date().toLocaleTimeString());
+
+    // render() 메소드에는 하나의 인자만 전달할 수 있기 때문에 여러 개의 요소를 전달하려면 배열을 이용하거나 
+    // 부모 태그로 감싸야 한다.
+    root4.render([textElement, timeElement]);
+  })
+</script>
+
 </body>
 </html>
