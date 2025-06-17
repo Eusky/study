@@ -10,22 +10,49 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    <div id="root1"></div>
-    <script type="text/babel">
-        // 컴포넌트 생성
-        const NameCard1 = ({name, phone}) => {
-            return (
-                <h1>
-                    <div>이름 {name}</div>
-                    <div>연락처 {phone}</div>
-                </h1>
-            );
-        }
-        const name = "이유천"
-        const phone = "010-7754-7632"
+  <div id="root1"></div>
+  <script type="text/babel">
+    // React 컴포넌트 생성
+    const Spin1 = () => {
+      // state 생성
+      const [number, setNumber] = React.useState(0);
+      const [isOddNum, setIsOddNum] = React.useState("");
+      
 
-        ReactDOM.createRoot(document.getElementById("root1")).render(<NameCard1 name={name} phone={phone}/>);
+      React.useEffect(() => {
+        if(number === 0) setIsOddNum("0입니다.");  
+        else if(number % 2 === 0) setIsOddNum("짝수입니다.");  
+        else setIsOddNum("홀수입니다.");  
+      }, [number]);
 
-    </script>
+      // 증가용 이벤트 핸들러 
+      const increaseHandler = e => {
+        setNumber(number + 1);
+      }
+
+      // 감소용 이벤트 핸들러
+      const decreaseHandler = e => {
+        if(number <= 0) return;
+        setNumber(number - 1)
+      };
+
+      // 버튼 초기화 이벤트 핸들러
+      const resetNumber = e => setNumber(0);
+      
+      return (
+        <>
+          <h1>{number}</h1>
+          <button onClick={increaseHandler}>증가</button>
+          <button onClick={decreaseHandler}>감소</button>
+          <button onClick={resetNumber}>초기화</button>
+          <br/>
+          <span>{isOddNum}</span>
+        </>
+      )
+    }
+
+    // rendering
+    ReactDOM.createRoot(document.getElementById("root1")).render(<Spin1/>)
+  </script>
 </body>
 </html>
