@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <title>Todo List</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+
+    const TodoAppend = ({todoDesc, onChange, onClick}) => {
+      return (
+        <div className="todo-append">
+          <label htmlFor="todo-desc">할 일 추가</label>
+          <input type="text" id="todo-desc" onChange={onChange} value={todoDesc}/>
+          <button type="button" onClick={onClick}>입력</button>
+        </div>
+
+      )
+    }
+    const TodoList = () => {
+      // state
+      const [todos, setTodos] = React.useState([]); // 할 일 리스트
+      const [todo, setTodo] = React.useState({ // 할 일 
+        todoNo: 1,
+        todoDesc: "",
+        isDone: false,
+      }) 
+      // todoDesc 이벤트 핸들러
+      const onTodoDescChange = e => {
+        setTodo({
+          ...todo, // 기존 todo를 모두 그대로 사용합니다.
+          todoDesc: e.target.value,
+        });
+      }
+      const onAddClick = e => {
+        if(todo.todoDesc.trim() === "") {
+          alert("할 일을 입력하세요");
+          return;
+        }
+        setTodos(todos.concat(todo)); // todos 배열에 todo를 연결한 새로운 배열을 전달합니다.
+        setTodo({ //-------------------- todo 초기화
+          todoNo: todo.todoNo + 1,
+          todoDesc: "",
+          isDone: false,
+        });
+      }
+      const onCheckboxChange = e => {
+          
+        setTodos(todos.map(todo => {
+            if(e.target.id === String(todo.todoNo)) return {...todo, isDone: e.target.checked} // 체크한 항목과 일치하는 todo를 찾습니다.
+            else return todo;                                                         // 완료 여부(isDone)가 체크되어 있으면 true로, 아니면 false로 업데이트합니다.
+            }
+          ));
+      }
+      // 삭제 버튼 클릭 이벤트 핸들러
+      const onDeleteClick = e => {
+        setTodos(
+          todos.filter(todo => String(todo.todoNo) !== e.target.dataset.todoNo)
+        );
+      }
+      
+      return (
+        <>
+          <TodoAppend todoDesc={todo.todoDesc} onChange={onTodoDescChange} onClick={onAddClick}/>
+          <div className="todos">
+            {todos.map(todo =>  
+              (
+              // 아래 div를 <TodoListItem> 컴포넌트로 분리해 보세요.
+              <TodoListItem onChange={onCheckboxChange} onClick={onDeleteClick} todo={todo} key={todo.todoNo}/>
+              ))
+            }
+          </div>
+        </>
+      )
+    }
+    const TodoListItem = ({onChange, onClick, todo}) => {
+      return (
+        <div className="todo"> 
+          <input type="checkbox" id={todo.todoNo} onChange={onChange}/>
+          <label htmlFor={todo.todoNo} style={{textDecoration: todo.isDone ? "line-through" : "none"}}>{todo.todoDesc}</label>
+          <button type="button" data-todo-no = {todo.todoNo} onClick={onClick}>X</button>
+        </div>
+      )
+    }
+    const TodoHeader = () => {
+      return (
+        <div className="header">
+          <h1>오늘의 TodoList ({new Date().toLocaleDateString()})</h1>
+        </div>
+      )
+    }
+    const TodoBody = () => {
+      return (
+        <div className="body">
+          <TodoList/>
+        </div>
+      )
+    }
+    const TodoFooter = () => {
+      return (
+        <div className="footer">
+          <p>Copyright 2025. All rights reserved.</p>
+        </div>
+      )
+    }
+
+    // 할일 앱 컴포넌트 생성
+    const TodoApp = () => {
+      return (
+        <>
+          <TodoHeader/>
+          <TodoBody/>
+          <TodoFooter/>
+        </>
+      )
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<TodoApp/>)
+  </script>
+</body>
+</html>

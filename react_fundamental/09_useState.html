@@ -303,5 +303,135 @@
   ReactDOM.createRoot(document.getElementById("root8")).render(<AnimalComp/>)
 
 </script>
+
+<hr>
+<div id="root9"></div>
+<script type="text/babel">
+  // 연습) 좋아요 버튼 
+  // 누를때마다 버튼 텍스트가 "좋아요", "싫어요"가 반복되도록 컴포넌트를 구현하세요.
+
+  // Component
+  const LikeButton = () => {
+    // State
+    const [isLike, setIsLike] = React.useState(true);
+  
+    // 이벤트 핸들러
+    const clickHandler = e => {
+      setIsLike(prev => !prev)
+    }
+    return (
+        <button type="button" onClick={clickHandler}>{isLike ? "좋아요" : "싫어요"}</button>
+    )
+
+  }
+  // Render
+  ReactDOM.createRoot(document.getElementById("root9")).render(<LikeButton/>);
+</script>
+
+<hr>
+
+<div id="root10"></div>
+<script type="text/babel">
+  // 연습) 배열에 값 추가하기
+  // "1 추가" 버튼 클릭 -> 배열에 1 추가 -> "2 추가 버튼 클릭" -> 배열에 2 추가 -> ...
+  // 배열에 저장된 모든 요소를 화면에 출력하세요.
+
+  // Component
+  const AddNumber = () => {
+    // State
+    const [arr, setArr] = React.useState([]);
+    const [number, setNumber] = React.useState(1);
+    
+    // Event Handler
+    const nextNum = e => {
+      setNumber(prev => prev + 1);
+      setArr(prev => [...prev, number]);
+    }
+    return (
+      <>
+        <button type="button" onClick={nextNum}>{number}추가</button>
+        <h1>{arr.join(", ")}</h1>
+      </>
+    );
+  }
+  // Render
+  ReactDOM.createRoot(document.getElementById("root10")).render(<AddNumber/>);
+
+</script>
+
+<div id="root11"></div>
+<script type="text/babel">
+
+  const PhoneNumber = () => {
+
+    const [phone, setPhone] = React.useState("");
+    const handleChange = e => {
+      setPhone(e.target.value.replace(/-/g, "").substring(0, 11));
+    }
+    return (
+      <>
+      <input type="text" onChange={handleChange} value={phone}/>
+      <div>{phone}</div>
+      </>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root11")).render(<PhoneNumber/>);
+</script>
+
+<hr>
+<div id="root12"></div>
+<script type="text/babel">
+  const PreviousPresent = () => {
+    // state
+    const [prev, setPrev] = React.useState("");
+    const [present, setPresent] = React.useState("");
+
+    const handleChange = e => {
+      setPrev(present);
+      setPresent(e.target.value);
+    }
+
+    return (
+      <>
+        <input
+          type="text"
+          value={present}
+          onChange={handleChange}
+          placeholder="아무 말이나 입력"
+        />
+        <h1>이전값: {prev}</h1>
+        <h1>현재값: {present}</h1>
+      </>
+
+    )
+  }
+  ReactDOM.createRoot(document.getElementById("root12")).render(<PreviousPresent/>);
+
+</script>
+
+
+<hr>
+
+<div id="root13"></div>
+<script type="text/babel">
+  const MultiSwitch = () => {
+    
+    const [switches, setSwitches] = React.useState([false, false, false]);
+    // click 이벤트 발생 시 동작하는 toggleSwitch 함수
+    const toggleSwitch = id => {
+      
+    }
+    return (
+      <>
+        여기서에는 map으로 button 3개 만들기
+        각 button을 클릭하면 toggleSwitch 함수를 호출하는데 이 때 각 button의 식별자를 전달합니다.
+        그럼 toggleSwitch 함수는 해당 식별자를 받아서 해당 버튼의 ON/OFF를 변경합니다.
+      </>
+    )
+
+  }
+  ReactDOM.createRoot(document.getElementById("root13")).render(<MultiSwitch/>);
+
+</script>
 </body>
 </html>
