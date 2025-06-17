@@ -18,7 +18,7 @@
   
 2. React.useEffect() 구문
   1) 형식
-    React.useEffect(setup, [dependencies]);
+    React.useEffect(setup[,  \dependencies]);
   2) 설명
     (1) setup
       - 사이드 이펙트가 동작할 코드가 작성된 함수입니다.
@@ -55,6 +55,108 @@
       };
     }, []);
 -->
+<div id="root1"></div>
+<script type="text/babel">
+  const Now = () => {
+    const [now, setNow] = React.useState(new Date().toLocaleTimeString());
+    React.useEffect(() => {
+      alert("useEffect 동작");
+    }); // 의존 배열이 없으면 화면이 렌더링될때마다 useEffect에 등록한 함수가 동작합니다.
+    const changeTime = e => {
+      return setNow(new Date().toLocaleTimeString());
+    }
+    return (
+      <>
+      <button onClick={changeTime}>Now</button>
+      <h1>{now}</h1>
+      </>
+    )      
+  }
+  const Now2 = () => {
+    const [now, setNow] = React.useState(new Date().toLocaleTimeString());
+    React.useEffect(() => {
+      alert("useEffect 동작");
+    }, []); // 의존 배열이 빈 배열이면 최초 렌더링시에만 useEffect에 등록한 함수가 동작합니다.
+    const changeTime = e => {
+      return setNow(new Date().toLocaleTimeString());
+    }
+    return (
+      <>
+      <button onClick={changeTime}>Now</button>
+      <h1>{now}</h1>
+      </>
+    )      
+  }
+  const Today = () => {
+    
+    const [date, setDate] = React.useState({
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      day: new Date().getDate(),
+    });
+    React.useEffect(() => {
+      alert("useEffct 동작")
+    }, [date.year, date.month]) // 의존 배열에 명시한 date.year, date.month가 변하면 셋업이 동작합니다.
+    // handleYear, handleMonth, handleDay 이벤트를 handleChange 이벤트로 모아보세요.
+    
+    const handleChange = e => {
+      setDate({...date, [e.target.id]: Number(e.target.value)})
+    }
+    
+    return (
+      <>
+      <input id="year" type="text" placeholder="년" onChange={handleChange} value={date.year}/>
+      <input id="month" type="text" placeholder="월" onChange={handleChange} value={date.month}/>
+      <input id="day" type="text" placeholder="일" onChange={handleChange} value={date.day}/>
+      <h1>{JSON.stringify(date)}</h1>
+      </>
+    )
+  }
+  ReactDOM.createRoot(document.getElementById("root1")).render(<Today/>);
+</script>
+<hr>
+<div id="root2"></div>
+<script type="text/babel">
+  // 연습) 이름, 나이, 닉네임을 가지는 유저 state 작성합니다.
+  // 이름을 입력할 때 공백 검사를 수행해서 공백이면 경고창을 띄웁니다.
+  // 나이를 입력할 때 범위 검사를 수행해서 0미만 120초과이면 경고창을 띄웁니다.
+  // 닉네임을 입력할 때는 아무 검사도 수행하지 않습니다.
+  // 화면에는 입력한 이름, 나이, 닉네임을 출력합니다.
 
+  const User = () => {
+    // useState 
+    const [userInfo, setUserInfo] = React.useState({
+      name: "",
+      age: 0,
+      nickname: "",
+    });
+    // useEffect
+    React.useEffect(() => {
+      if(userInfo.name.length === 0) {
+        alert("이름을 입력하세요.");
+        setUserInfo({...userInfo, name: ""});
+      }
+      if(userInfo.age < 0 || userInfo.age > 120) {
+        alert("올바른 나이를 입력하세요.");
+        setUserInfo({...userInfo, age: 0});
+      }
+    }, [userInfo.name, userInfo.age]);
+    // Event Handler
+    const onChangeHandler = e => {
+      const {id, value} = e.target;
+      setUserInfo(prev => ({...prev, [id]: value}));
+    }
+    return (
+      <>
+        <input id="name" value={userInfo.name} type="text" placeholder="이름" onChange={onChangeHandler}/>
+        <input id="age" value={userInfo.age} type="text" placeholder="나이" onChange={onChangeHandler}/>
+        <input id="nickname" value={userInfo.nickname} type="text" placeholder="닉네임" onChange={onChangeHandler}/>
+        <h1>{JSON.stringify(userInfo)}</h1>
+      </>
+    )
+  }
+  // Render
+  ReactDOM.createRoot(document.getElementById("root2")).render(<User/>);
+</script>
 </body>
 </html>
