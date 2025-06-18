@@ -230,18 +230,18 @@
       alert(`id: ${user.id}, pw: ${user.pw}`);
     }
 
-    return (
-      <form onSubmit={btnEvent}>
-        <input id="id" type="text" placeholder="아이디" value={user.id} onChange={handleChange}/> {/* id 값은 state user 객체의 id 프로퍼티 이름과 동일하게 맞춥니다. */}
-        <label htmlFor="id" style={{color : (isLongEnough === "아이디는 5글자 이상이어야 합니다.") ? "red" : "black"}}>{isLongEnough}</label>
-        <br/>
-        <input id="pw" type="password" placeholder="비밀번호" value={user.pw} onChange={handleChange}/> {/* id 값은 state user 객체의 id 프로퍼티 이름과 동일하게 맞춥니다. */}
-        <label htmlFor="pw" style={{color : (isIncludesNumber === "비밀번호는 숫자를 포함해야 합니다.") ? "red" : "black"}}>{isIncludesNumber}</label>
-        <br/>
-        <br/>
-        <button type="submit">로그인</button>
-      </form>
-    )
+    // return (
+    //   <form onSubmit={btnEvent}>
+    //     <input id="id" type="text" placeholder="아이디" value={user.id} onChange={handleChange}/> {/* id 값은 state user 객체의 id 프로퍼티 이름과 동일하게 맞춥니다. */}
+    //     <label htmlFor="id" style={{color : (isLongEnough === "아이디는 5글자 이상이어야 합니다.") ? "red" : "black"}}>{isLongEnough}</label>
+    //     <br/>
+    //     <input id="pw" type="password" placeholder="비밀번호" value={user.pw} onChange={handleChange}/> {/* id 값은 state user 객체의 id 프로퍼티 이름과 동일하게 맞춥니다. */}
+    //     <label htmlFor="pw" style={{color : (isIncludesNumber === "비밀번호는 숫자를 포함해야 합니다.") ? "red" : "black"}}>{isIncludesNumber}</label>
+    //     <br/>
+    //     <br/>
+    //     <button type="submit">로그인</button>
+    //   </form>
+    // )
   }
   ReactDOM.createRoot(document.getElementById("root7")).render(<LoginComp2/>);
 
@@ -481,9 +481,48 @@
   //       비밀번호: 4글자 미만이면 "비밀번호는 4자 이상입니다."
   //       이메일, 비밀번호, 유효성 검사 결과 모두 state로 관리해야 합니다.
   const ValidateInput = () => {
+    const {useState, useEffect} = React;
+    // State
+    const [email, setEmail] = useState("");
+    const [pw, setPw] = useState("");
+    const [isEmailValid, setIsEmailValid] = useState(false);
+    const [isPwValid, setIsPwValid] = useState(false);
 
+    // onBlur 이벤트(focus out)
+    const startValidTest = (e) => {
+      const {id, value} = e.target;
+      // 이메일 형식이면 true
+      if(id === "email") {
+        setIsEmailValid(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));
+      }
+      // 비밀번호 4자리 이상이면 true
+      else if(id === "pw") {
+        setIsPwValid(value.length >= 4);
+      }
+    }
+
+    // 이메일, 비밀번호 입력 이벤트
+    const saveInputData = (e) => {
+      const {id, value} = e.target;
+      if(id === "email") {
+        setEmail(value);
+      }
+      else if(id === "pw") {
+        setPw(value);
+      }
+    };
+
+    return (
+      <>
+        <input id="email" type="text" onChange={saveInputData} onBlur={startValidTest }value={email}/>
+        {!isEmailValid && <label htmlFor="email">이메일 형식이 아닙니다.</label>}
+        <br/>
+        <input id="pw" type="password" onChange={saveInputData} onBlur={startValidTest} value={pw}/>
+        {!isPwValid && <label htmlFor="pw">비밀번호는 4자 이상입니다.</label>}
+      </>
+    )
   }
-  ReactDOM.createRoot(document.getElementById('root15')).render(<ValidateInput/>)
+  ReactDOM.createRoot(document.getElementById('root15')).render(<ValidateInput/>);
 </script>
 </body>
 </html>
