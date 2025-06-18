@@ -112,7 +112,7 @@
       </>
     )
   }
-  ReactDOM.createRoot(document.getElementById("root1")).render(<Today/>);
+ // ReactDOM.createRoot(document.getElementById("root1")).render(<Today/>);
 </script>
 <hr>
 <div id="root2"></div>
@@ -156,7 +156,155 @@
     )
   }
   // Render
-  ReactDOM.createRoot(document.getElementById("root2")).render(<User/>);
+ // ReactDOM.createRoot(document.getElementById("root2")).render(<User/>);
 </script>
+<div id="root3"></div>
+<script type="text/babel">
+  // Component
+  const ConsoleTimer = () => {
+    // Hook
+    // Effect
+    React.useEffect(() => {
+      console.log("Timer Start");
+      const intervalID = setInterval(() => {
+        console.log(new Date().toLocaleTimeString());
+      }, 1000)
+      // Cleanup 함수 반환 
+      // Component가 Unmount될 때 동작
+      return () => {
+        clearInterval(intervalID);
+        console.log("Timer stop");
+      }
+    }, [])
+  }
+  const ConsoleTimerBtn = () => {
+    // State
+    const [flag, setFlag] = React.useState(false);
+    const handleClick = () => {
+      setFlag(!flag)
+    }
+    return(
+      <>
+        <button onClick={handleClick}>Time {flag ? "ON" : "OFF"}</button>
+        {flag ? <ConsoleTimer/> : null}
+      </>
+    )
+
+  }
+  // ReactDOM.createRoot(document.getElementById("root3")).render(<ConsoleTimerBtn/>);
+
+</script>
+<hr>
+
+<div id="root4"></div>
+<script type="text/babel">
+  // 연습) 타이머 시작 버튼을 클릭하면 5초 타이머가 동작하는 컴포넌트를 구현하세요.
+  // 화면에 5, 4, 3, 2, 1, 0 순차적으로 표시됩니다.
+
+  const Timer = ({seconds}) => {
+    // State
+    const [remainTime, setRemainTime] = React.useState(Number(seconds));
+    const [start, setStart] = React.useState(false);
+
+    // Effect
+    React.useEffect(() => {
+      if(!start) return;
+      if(remainTime === 0) return;
+      const timeoutId = setTimeout(() => {setRemainTime(prev => prev - 1)}, 1000);
+      return () => clearTimeout(timeoutId);
+    }, [remainTime, start]);
+
+    return (
+      <>
+      <button onClick={() => {setStart(true)}} disabled={start}>타이머 시작</button>
+      <div>{remainTime}</div>
+      </>
+    )
+  }
+  ReactDOM.createRoot(document.getElementById("root4")).render(<Timer seconds="5"/>);
+
+</script>
+
+<hr>
+
+<div id="root5"></div>
+<script type="text/babel">
+  // window 이벤트 리스너와 cleanup 함수
+  const KeyLogger = () => {
+    React.useEffect(() => {
+      // setup
+      const handleKeyDown = e => {
+        console.log("눌린 키: ", e.key)
+      }
+      window.addEventListener("keydown", handleKeyDown);
+      // cleanup
+      return () => {window.removeEventListener("keydown", handleKeyDown)}
+    }, [])
+
+    return (
+      <div>콘솔을 열고 아무 키나 눌러보세요.</div>
+    )
+
+  }
+  ReactDOM.createRoot(document.getElementById("root5")).render(<KeyLogger/>);
+</script>
+<div id="root6"></div>
+<script type="text/babel">
+  // 연습) 창 너비를 변경하면 (resize 이벤트) 화면에 현재 창의 너비를 출력하세요.
+  // 창 너비는 window.innerWidth 값을 확인하면 됩니다.
+
+  const WindowSizeLogger = () => {
+    const [windowSize, setWindowSize] = React.useState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+    React.useEffect(() => {
+      window.addEventListener("resize", () => {
+        setWindowSize({width: window.innerWidth, height: window.innerHeight});
+      })
+    }, [])
+    return (
+      <h1>너비: {windowSize.width}, 높이: {windowSize.height}</h1>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root6")).render(<WindowSizeLogger/>);
+</script>
+<hr>
+
+<div id="root7"></div>
+<script type="text/babel">
+  const Todos = () => {
+    // API로부터 가져온 데이터를 렌더링할 수 있도록 state에 저장합니다. 
+    const [todos, setTodos] = React.useState([]);
+
+    // useEffect
+    React.useEffect(() => {
+      fetch("https://jsonplaceholder.typicode.com/todos")
+        .then(response => response.json())
+        .then(jsonData => {
+          setTodos(jsonData); // API로부터 가져온 데이터를 state에 저장합니다.
+        });
+    }, []);
+
+    return (
+      <div>{todos.map((todo, i) => <div key={i}>{todo.title}</div>)}</div>
+    )
+  }
+  ReactDOM.createRoot(document.getElementById("root7")).render(<Todos/>);
+</script>
+
+<hr>
+
+<div id="root8"></div>
+<script type="text/babel">
+
+  // 연습) 화면에 적당한 길이의 랜덤 문자열을 표시합니다. (window.crypto.randomUUID()를 활용해 보세요.)
+  //       문자열 아래에는 입력 상자를 배치합니다.
+  //       입력 상자에 랜덤 문자열을 그대로 입력합니다. 입력이 끝나면 Enter를 누르세요.
+  //       랜덤 문자열을 그대로 잘 입력하고 Enter를 누르면, 입력하는데 걸린 시간을 경고창에 출력하세요.
+  //       입력을 잘못한 뒤 Enter를 누르면, 아무 일도 일어나지 않도록 처리하세요.
+
+</script>
+
 </body>
 </html>
