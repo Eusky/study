@@ -1,58 +1,129 @@
+
 const answersHTMLLength = Object.keys(answersHTML).length;
 const answersCSSLength = Object.keys(answersCSS).length;
 const answersJSLength = Object.keys(answersJS).length;
 const answersReactLength = Object.keys(answersReact).length;
 
-const containerHTML = document.getElementById("containerHTML");
-const containerCSS = document.getElementById("containerCSS");
-const containerJS = document.getElementById("containerJS");
-const containerReact = document.getElementById("containerReact");
+// const containerHTML = document.getElementById("containerHTML");
+// const containerCSS = document.getElementById("containerCSS");
+// const containerJS = document.getElementById("containerJS");
+// const containerReact = document.getElementById("containerReact");
 
-for(let n=0; n<answersHTMLLength; n++) {
-  const key = "no" + (n+1);
-  let str = "";
-  questionsHTML[key].forEach(item => str += "<br>&bull; " + item);
+const kind = ["HTML", "CSS", "JS", "React"];
 
-  str = `
-    <div>
-      <span class="wordNum">${n+1}</span>
-      <input type="text" class="word" id="wordHTML${n+1}">
-      <button type="button" class="btn-submit" id="btn-submitHTML${n+1}">입력</button>
-      <button type="button" class="btn-submit" id="btn-showAnswersHTML${n+1}">정답보기</button>
-      <span class="isCorrect" id="isCorrectHTML${n+1}"></span>
-    </div>
-    <div>
-      <span>`
-        + str +
-      `</span>
-    </div>
-    <br>
-  `;
-  containerHTML.innerHTML += str;
+const Data = ({index, q}) => {
+  const key = "no" + (index+1);
+  const data = q[key].map((item, i) => {
+    return (
+      <React.Fragment key={i}>
+        <br/>{String.fromCharCode(8226) + item}
+      </React.Fragment>
+    );
+  })
+  return (
+    <>{data}</>
+  )
 }
 
-for(let n=0; n<answersHTMLLength; n++) {
-  document.getElementById(`btn-submitHTML${n+1}`).addEventListener("click", () => {
-    const word = document.getElementById(`wordHTML${n+1}`).value;
-    const editedWord = word.replace(/\s+/g, "").toLowerCase();
-    const editedAnswer = answersHTML[`no${n+1}`].map(str => str.replace(/\s+/g, "").toLowerCase());
-    const isCorrect = document.getElementById(`isCorrectHTML${n+1}`);
+const Form = ({kind, a, q, as}) => {
+
+  const [userInput, setUserInput] = React.useState("");
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  const confirmAnswer = (e) => {
+   
+  }
+  const showAnswer = (e) => {
+
+  }
+  const saveInput = (e) => {
+   
+  }
+
+  const form = Array.from({length: a}, (_, i) => {
+  return (
+    <React.Fragment key={i}>
+      <div>
+        <span className="wordNum">{i+1}</span>
+        <input type="text" className="word" id={"word" + kind + (i+1)} onChange={saveInput} value={userInput}/>
+        <button type="button" className="btn-submit" id={"btn-submit" + kind + (i+1)} onClick={confirmAnswer}>입력</button>
+        <button type="button" className="btn-submit" id={"btn-showAnswers" + kind + (i+1)} onClick={showAnswer}>정답보기</button>
+        <span className="isCorrect" id={"isCorrect" + kind + (i+1)}></span>
+      </div>
+      <div>
+        <span><Data index={i} q={q}/></span>
+      </div>
+      <br/>
+    </React.Fragment>
+  )
+  });
+
+  return (<>{form}</>);
+}
+
+const Title = ({text}) => {
+  return (
+    <h1 className="title">{text}</h1>
+  );
+}
+const Nav = () => {
+  return (
+    <div id="nav">
+      <a href="#html">HTML</a>
+      <a href="#css">CSS</a>
+      <a href="#js">JavaScript</a>
+      <a href="#react">React</a>
+    </div>
+  );
+}
+
+const MainPage = () => {
+  return (
+    <>
+      <h2 id="html">HTML</h2>
+      <Form kind={kind[0]} a={answersHTMLLength} q={questionsHTML} as={answersHTML}/>
+
+      <h2 id="css">CSS</h2>
+      <Form kind={kind[1]} a={answersCSSLength} q={questionsCSS}/>
+
+      <h2 id="js">JavaScript</h2>
+      <Form kind={kind[2]} a={answersJSLength} q={questionsJS}/>
+
+      <h2 id="react">React</h2>
+      <Form kind={kind[3]} a={answersReactLength} q={questionsReact}/>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById("rootTitle")).render(<Title text={"웹(HTML, CSS, JavaScript + React) 단어집"}/>);
+ReactDOM.createRoot(document.getElementById("rootNav")).render(<Nav/>);
+ReactDOM.createRoot(document.getElementById("rootMainPage")).render(<MainPage/>);
+
+
+
+// for(let n=0; n<answersHTMLLength; n++) {
+//   document.getElementById(`btn-submitHTML${n+1}`).addEventListener("click", () => {
+//     const word = document.getElementById(`wordHTML${n+1}`).value;
+//     const editedWord = word.replace(/\s+/g, "").toLowerCase();
+//     const editedAnswer = answersHTML[`no${n+1}`].map(str => str.replace(/\s+/g, "").toLowerCase());
+//     const isCorrect = document.getElementById(`isCorrectHTML${n+1}`);
     
-    if(editedAnswer.includes(editedWord)) {
-      isCorrect.textContent = "정답";
-      isCorrect.style.color = "#3edc81";
-    }
-    else {
-      isCorrect.textContent = "오답";
-      isCorrect.style.color = "#ff4d4d";
-    }
-  });
-  document.getElementById(`btn-showAnswersHTML${n+1}`).addEventListener("click", () => {
-    const isCorrect = document.getElementById(`isCorrectHTML${n+1}`);
-    isCorrect.textContent = answersHTML[`no${n+1}`][0];
-    isCorrect.style.color = "#3edc81";
-  });
-}
+//     if(editedAnswer.includes(editedWord)) {
+//       isCorrect.textContent = "정답";
+//       isCorrect.style.color = "#3edc81";
+//     }
+//     else {
+//       isCorrect.textContent = "오답";
+//       isCorrect.style.color = "#ff4d4d";
+//     }
+//   });
+//   document.getElementById(`btn-showAnswersHTML${n+1}`).addEventListener("click", () => {
+//     const isCorrect = document.getElementById(`isCorrectHTML${n+1}`);
+//     isCorrect.textContent = answersHTML[`no${n+1}`][0];
+//     isCorrect.style.color = "#3edc81";
+//   });
+// }
+
+
 
 for(let n=0; n<answersCSSLength; n++) {
   const key = "no" + (n+1);
