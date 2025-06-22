@@ -13,7 +13,7 @@ html {
   text-decoration: none;
   display: flex;
   line-height: 80px;
-  width: 25%;
+  width: 20%;
   justify-content: center;
 }
 #nav > a:hover {

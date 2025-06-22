@@ -1,7 +1,7 @@
 /*
 SQL 종류
 1. DDL(Data Definition Language)
-  1)데이터 정의어
+  1) 데이터 정의어
   2) 데이터베이스, 테이블, 사용자 등의 정보를 다루는 언어
   3) 종류
     (1) CREATE: 생성
@@ -21,7 +21,7 @@ SQL 종류
   1) 데이터 질의어
   2) 데이터를 검색할 때 사용하는 언어
   3) 종류
-    (1) SELECT: 선택
+    (1) SELECT: 조회
 
 4. DCL(Data Control Language)
   1) 데이터 제어어
