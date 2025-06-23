@@ -459,11 +459,42 @@ const answersReact = {
 };
 
 const questionsDB = {
-  no1: ["데이터 정의어", "데이터베이스, 테이블, 사용자 등의 정보를 다루는 언어", "종류: (1) CREATE: 생성, (2) ALTER: 수정 (3) DROP: 삭제 (4) TRUNCATE: 삭제의 한 종류",],
-  no2: ["데이터 조작어", "실제 데이터를 다루는 언어", "종류: (1) INSERT: 삽입 (2) UPDATE: 갱신 (3) DELETE: 삭제"],
-  no3: ["데이터 질의어", "데이터를 검색할 때 사용하는 언어", "종류: SELECT: 조회",],
-  no4: ["데이터 제어어", "사용자의 권한을 제어할 때 사용하는 언어", "종류: (1) GRANT: 승인 (2) REVOKE: 승인 해제",],
-  no5: ["트랜잭션 제어어", "트랜잭션을 처리할 때 사용하는 언어", "종류: (1) COMMIT: 트랜잭션 성공(작업 내용 저장) (2) ROLLBACK: 트랜잭션 실패(작업 내용 취소)",],
+  no1: ["데이터 정의어", 
+    "데이터베이스, 테이블, 사용자 등의 정보를 다루는 언어", 
+    "종류: (1) CREATE: 생성, (2) ALTER: 수정 (3) DROP: 삭제 (4) TRUNCATE: 삭제의 한 종류",
+  ],
+  no2: ["데이터 조작어", 
+    "실제 데이터를 다루는 언어", 
+    "종류: (1) INSERT: 삽입 (2) UPDATE: 갱신 (3) DELETE: 삭제"
+  ],
+  no3: ["데이터 질의어", 
+    "데이터를 검색할 때 사용하는 언어", 
+    "종류: SELECT: 조회",
+  ],
+  no4: ["데이터 제어어", 
+    "사용자의 권한을 제어할 때 사용하는 언어", 
+    "종류: (1) GRANT: 승인 (2) REVOKE: 승인 해제",
+  ],
+  no5: ["트랜잭션 제어어", 
+    "트랜잭션을 처리할 때 사용하는 언어", 
+    "종류: (1) COMMIT: 트랜잭션 성공(작업 내용 저장) (2) ROLLBACK: 트랜잭션 실패(작업 내용 취소)",
+  ],
+  no6: ["'관계형 데이터베이스 관리시스템'의 약어", 
+    "데이터를 구성하기 위해서 테이블을 사용하는 데이터베이스", 
+    "직관적 구조인 테이블을 사용하기 때문에 학습 및 유지 보수가 수월함", 
+    "대용량의 데이터를 손쉽게 저장하고 관리할 수 있음",
+  ],
+  no7: ["테이블의 데이터(행, Row)를 고유하게(Unique) 식별할 수 있는(Identify) 칼럼 또는 칼럼의 조합", 
+    "종류로는 슈퍼키(Super Key), 후보키(Candidate Key), 대체키(Alternate Key), 기본키(Primary Key), 외래키(Foreign Key)가 있다.",
+  ],
+  no8: ["트랜잭션의 특징 4가지를 축약한 용어",
+    "트랜잭션의 특징", 
+    "원자성(Atomicity), 일관성(Consistency), 격리성(Isolation), 지속성(Durability)",
+  ],
+  no9: ["데이터베이스에서 처리되는 여러 SQL 명령들을 하나의 논리적 작업 단위로 처리하는 것",
+    "작업이 시작되면 중간에 멈추지 않고 반드시 종료해야 하는 작업 단위",
+    "작업 도중 하나라도 실패하면 아무 일도 하지 않은 상태로 되돌아가야 함",
+  ]
 }
 
 const answersDB = {
@@ -472,4 +503,8 @@ const answersDB = {
   no3: ["DQL", "Data Query Language",],
   no4: ["DCL", "Data Control Language",],
   no5: ["TCL", "Transaction Control Language",],
+  no6: ["RDBMS", "Relational DataBase Management System",],
+  no7: ["키", "key",],
+  no8: ["ACID"],
+  no9: ["트랜잭션", "Transaction",],
 }
