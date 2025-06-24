@@ -497,6 +497,16 @@ const questionsDB = {
   ],
   no10: ["SELECT 절에서 중복된 값을 제거하기 위해 사용하는 키워드입니다.",
   ],
+  no11: ["SQL에서 테이블이나 칼럼에 별칭(alias)을 부여할 때 사용하는 키워드",
+    "생략 가능합니다.",
+  ],
+  no12: ["2개 이상의 테이블을 동시에 조회하는 방식",
+    "조회할 때 필요한 정보가 여러 테이블에 존재하는 경우에 사용함",
+    "종류: 크로스 __, 내부 __, 외부 __",
+  ],
+  no13: ["FROM 절에서 사용되는 서브 쿼리를 ____라고 합니다.",
+    "별칭(alias)가 필수적으로 요구됩니다.",
+  ],
 }
 
 const answersDB = {
@@ -507,7 +517,10 @@ const answersDB = {
   no5: ["TCL", "Transaction Control Language",],
   no6: ["RDBMS", "Relational DataBase Management System",],
   no7: ["키", "key",],
-  no8: ["ACID"],
+  no8: ["ACID",],
   no9: ["트랜잭션", "Transaction",],
-  no10: ["DISTINCT"],
+  no10: ["DISTINCT",],
+  no11: ["AS",],
+  no12: ["조인", "JOIN"],
+  no13: ["인라인 뷰", "Inline View",],
 }

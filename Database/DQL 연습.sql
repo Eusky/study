@@ -12,11 +12,13 @@ SELECT * FROM tbl_employee WHERE salary BETWEEN 3000000 AND 5000000;
 # 3. 이름에 "민"이 포함된 직원 조회하기
 SELECT * FROM tbl_employee WHERE emp_name LIKE "%민%";
 
-# 4. 직원들이 근무 중인 부서명 중복 제거 후 조회하기
+# 4. 직원들이 근무 중인 부서ID 중복 제거 후 조회하기
 
 
 # 5. 직급별 급여 평균 조회하기
-
+SELECT position, AVG(salary) 
+FROM tbl_employee
+GROUP BY position;
 
 # 6. 부서별 직원 수 조회하기
 SELECT dept_id, COUNT(*) FROM tbl_employee GROUP BY dept_id ;
