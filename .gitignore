@@ -1,2 +1,4 @@
-assets/*
-!assets/css/
+/Web/assets/*
+!/Web/assets/css/
+!/Web/assets/css/**
+tools
