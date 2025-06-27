@@ -83,6 +83,9 @@ const MainPage = () => {
 
       <h2 id="db">DataBase</h2>
       <Form questions={questionsDB} answers={answersDB}/>
+
+      <h2 id="java">Java</h2>
+      <Form questions={questionsJava} answers={answersJava}/>
     </>
   );
 }
@@ -99,6 +102,7 @@ const Nav = () => {
       <a href="#js">JavaScript</a>
       <a href="#react">React</a>
       <a href="#db">DataBase</a>
+      <a href="#java">Java</a>
     </div>
   );
 }

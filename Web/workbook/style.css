@@ -6,6 +6,7 @@ html {
   justify-content: center;
   height: 80px;
   background-color: #333;
+  flex-wrap: wrap;
 }
 #nav > a {
   color: white;
@@ -13,7 +14,8 @@ html {
   text-decoration: none;
   display: flex;
   line-height: 80px;
-  width: 20%;
+  width: calc(100% / 6);
+  flex-shrink: 0;
   justify-content: center;
 }
 #nav > a:hover {
