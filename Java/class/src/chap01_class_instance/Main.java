@@ -1,6 +1,6 @@
 package chap01_class_instance;
 
-public class InstanceEx {
+public class Main {
 
   public static void main(String[] args) {
     

@@ -8,7 +8,7 @@ USE db_ddl;
 # 행(Row), 열(Column)
 # 기본 문법: 칼럼명 -> 데이터타입 -> 제약조건 순으로 작성
 CREATE TABLE IF NOT EXISTS tbl_product (
-  product_id   INT             NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  product_id   INT            NOT NULL AUTO_INCREMENT PRIMARY KEY,
   product_name VARCHAR(50)    NOT NULL,
   price        DECIMAL(10,2)  NOT NULL,
   discount     DECIMAL(10,2)  NULL,
