@@ -554,6 +554,8 @@ const questionsJava = {
   ],
   no4: ["같은 이름의 메소드를 매개변수를 다르게 해서 여러 번 정의하는 것을 메소드 ____ 이라고 합니다.",
   ],
+  no5: ["데이터(필드)와 기능(메소드)을 하나의 클래스로 묶고, 데이터를 외부에서 직접 볼 수 없게 은닉하여 보호하고 필요한 기능만 외부에 공개하는 것을 말합니다.",
+  ],
 }
 
 const answersJava = {
@@ -561,5 +563,5 @@ const answersJava = {
   no2: ["참조 타입", "Reference Type",],
   no3: ["스택 영역", "스택", "Stack",],
   no4: ["오버로딩", "overloading",],
-
+  no5: ["캡슐화", "Encapsulation",],
 }
