@@ -21,6 +21,14 @@ public class Ex09 {
     
     String[][] gugudan = new String[8][9];
     
+    for(int i=0; i<gugudan.length; i++) {
+      for(int j=0; j<gugudan[i].length; j++) {
+        gugudan[i][j] = (i+2) * (j+1) + "";
+        System.out.println((i+2) + "*" + (j+1) + "=" + gugudan[i][j]);
+      }
+    }
+    
+    
   }
   
 }

@@ -19,6 +19,20 @@ public class Ex08 {
         {3, 3}
     };
     
+    
+    
+    for(int i = 0; i < apt.length; i++) {
+      
+      int total = 0;
+      
+      for(int j = 0; j < apt[i].length; j++) {
+        
+        total += apt[i][j];
+      }
+      
+      System.out.println((i + 1) + "층: " + total + "명");
+    }
+    
   }
   
 }

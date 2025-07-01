@@ -37,6 +37,22 @@ public class Ex10 {
         {0, 0, 1, 0, 0}
     };
     
+    int[][] T2 = new int[5][5];
+    
+    for(int i=0; i<5; i++) {
+      for(int j=0; j<5; j++) {
+        T2[j][4-i] = T[i][j];
+      }
+    }
+    
+    for (int i = 0; i < 5; i++) {
+      System.out.print("[ ");
+      for (int j = 0; j < 5; j++) {
+          System.out.print(T2[i][j] + " ");
+      }
+      System.out.println("]");
+  }
+    
   }
   
 }

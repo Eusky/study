@@ -1,5 +1,7 @@
 package chap03_ex;
 
+import java.util.Arrays;
+
 public class Ex07 {
 
   public static void main(String[] args) {
@@ -28,6 +30,20 @@ public class Ex07 {
                         //  | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
                         //  └---+---+---+---+---+---+---+---+---+---┘
                         //    0   1   2   3   4   5   6   7   8   9
+    
+    for(int i = 0; i < binary.length; i++) {
+      
+      if(number == 0) {
+        break;
+      }
+    	
+    	binary[i] = number % 2;
+    	number /= 2 ;
+    }
+    
+    for(int i = binary.length - 1; i >= 0; i--) {
+      System.out.print(binary[i]);
+    }
     
   }
   

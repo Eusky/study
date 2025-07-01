@@ -1,5 +1,7 @@
 package chap03_ex;
 
+import java.util.Arrays;
+
 public class Ex06 {
 
   public static void main(String[] args) {
@@ -15,6 +17,16 @@ public class Ex06 {
     
     char[] uppers = new char[26];
     char[] lowers = new char[26];
+    
+    for(int i = 0; i < 26; i++) {
+    	uppers[i] = (char)(i + 65);
+    }
+    for(int i = 0; i < 26; i++) {
+    	lowers[i] = (char)(i + 97);
+    }
+    
+    System.out.println(Arrays.toString(uppers));
+    System.out.println(Arrays.toString(lowers));
     
   }
   
