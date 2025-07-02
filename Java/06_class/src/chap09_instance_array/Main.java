@@ -5,22 +5,38 @@ import javax.swing.JOptionPane;
 public class Main {
 
   public static void main(String[] args) {
+    // 제품 진열하기
+    Product product1 = new Product("양파1.5kg", 3000);
+    Product product2 = new Product("고등어1손", 5000);
+    Product product3 = new Product("한돈앞다리1kg", 15000);
+    Product product4 = new Product("블랙앵거스살치살500g", 20000);
+    Product product5 = new Product("꼬마돈까스", 9000);
     
-    // "1" -> 1
-    int x = Integer.parseInt("1");
-    System.out.println(x + 1);
+    // 카트 진열하기
+    Cart cart1 = new Cart();
     
-    // "1.5" -> 1.5
-    double y = Double.parseDouble("1.5");
-    System.out.println(y + 1);
+    // 고객 입장
+    Customer customer1 = new Customer(50000);
     
-    // 입력 대화상자
-    // showInputDialog()는 항상 String을 반환하므로 적절한 변환 과정이 필요할 수 있습니다.
-    String name = JOptionPane.showInputDialog("이름을 입력하세요.");
-    System.out.println(name);
-    int age = Integer.parseInt(JOptionPane.showInputDialog("나이를 입력하세요."));
-    System.out.println(age);
-
+    // 고객이 카트를 취득
+    customer1.setCart(cart1);
+    
+    // 쇼핑
+    customer1.addToCart(product2);
+    customer1.addToCart(product3);
+    customer1.addToCart(product4);
+//    customer1.removeFromCart(0);
+    
+    // 구매
+    String receipt = customer1.purchase();
+    
+    // 구매내역 확인
+    if(receipt != null) {
+      System.out.println(receipt); // 구매 Product 목록 + 총 구매금액
+      JOptionPane.showMessageDialog(null, receipt);
+      JOptionPane.showMessageDialog(null, "남은 돈: " + customer1.getMoney());
+    }
+    
   }
 
 }

@@ -1,7 +1,5 @@
 package chap03_ex;
 
-import java.util.Arrays;
-
 public class Ex07 {
 
   public static void main(String[] args) {
