@@ -4,8 +4,11 @@ public class Main {
 
   public static void main(String[] args) {
     
-    Boxer boxer1 = new Boxer("마이크 타이슨", 1000, 50);
-    Boxer boxer2 = new Boxer("무하마드 알리", 1000, 40);
+    Boxer boxer1 = new Boxer("마이크 타이슨", 1000, 50, 0.2);
+    Boxer boxer2 = new Boxer("무하마드 알리", 990, 40, 0.3);
+    
+    Match match1 = new Match();
+    match1.startMatch(boxer1, boxer2);
 
     // boxer2가 boxer1을 먼저 때립니다. 이후 번갈아가면서 한 번씩 때립니다. 누구든 먼저 energy가 0이 되면 멈춥니다.
     
