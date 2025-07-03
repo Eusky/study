@@ -33,8 +33,7 @@ public class Main {
     // 구매내역 확인
     if(receipt != null) {
       System.out.println(receipt); // 구매 Product 목록 + 총 구매금액
-      JOptionPane.showMessageDialog(null, receipt);
-      JOptionPane.showMessageDialog(null, "남은 돈: " + customer1.getMoney());
+      System.out.println("남은 돈: " + customer1.getMoney());
     }
     
   }

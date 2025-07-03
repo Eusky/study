@@ -9,7 +9,7 @@ public class Car {
    * 2. 종류
    *  1) public    : 누구나 접근할 수 있습니다.
    *  2) protected : 동일 패키지에 있거나 상속 관계인 경우 접근할 수 있습니다.
-   *  3) default   : 동일 패키지에 있으면 접근할 수 있습니다. (default 키워드는 존재하지 않습니다. pakage 권한이라고도 합니다. Access Modifier가 없는 경우 default 권한을 가집니다.) 
+   *  3) default   : 동일 패키지에 있으면 접근할 수 있습니다. (default 키워드는 존재하지 않습니다. package 권한이라고도 합니다. Access Modifier가 없는 경우 default 권한을 가집니다.) 
    *  4) private   : 클래스 내부에서만 접근할 수 있습니다.
    * 3. 멤버의 권한
    *  1) 필드   : private (정보 은닉)
