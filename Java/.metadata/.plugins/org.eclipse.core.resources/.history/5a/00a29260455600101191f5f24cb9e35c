@@ -1,0 +1,17 @@
+package chap07_access_modifier;
+
+public class Main {
+
+  public static void main(String[] args) {
+    
+    Car car1 = new Car();
+    Car car2 = new Car("X6", 12000, new Brand("Hyundai", "Koera"));
+    Car car3 = new Car("model3", 9000, "Tesla", "USA");
+    
+    car1.printInfo();
+    car2.printInfo();
+    car3.printInfo();
+    
+  }
+
+}

@@ -1,0 +1,48 @@
+package chap09_instance_array;
+
+import java.util.Arrays;
+
+import javax.swing.JOptionPane;
+
+public class Customer {
+  
+  // 필드
+  private int money;
+  private Cart cart;
+  
+  // 생성자
+  public Customer(int money) {
+    this.money = money;
+  }
+
+  public int getMoney() {
+    return money;
+  }
+
+  public void setMoney(int money) {
+    this.money = money;
+  }
+
+  public Cart getCart() {
+    return cart;
+  }
+
+  public void setCart(Cart cart) {
+    this.cart = cart;
+  }
+  
+  // 메소드
+  
+  public void addToCart(Product product) {
+    if(cart == null) {
+      JOptionPane.showMessageDialog(null, "카트를 먼저 준비하세요.");
+      return;
+    }
+    cart.addProduct(product);
+  }
+  
+  public String purchase() {
+    return Arrays.toString(cart.getProducts());
+  }
+
+}
