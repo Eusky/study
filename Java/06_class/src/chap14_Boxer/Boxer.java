@@ -54,15 +54,33 @@ public class Boxer {
    * @param other 상대 복서(Boxer) 객체입니다.
    */
   public void punch(Boxer other) {
+    if(other.isEvade()) {
+      System.out.println("=============================================================");
+      System.out.println(this.getName()+ "이(가) " + other.getName() + "에게 펀치를 날렸습니다.");
+      System.out.println(other.getName() + "이(가) 공격을 회피했습니다.");
+      System.out.println(this.getName() + " ...... " + this.getEnergy());
+      System.out.println(other.getName() + " ...... " + other.getEnergy() + " ( - " + 0 + ")");
+      return;
+    }
+    
     if(other.getEnergy() < this.getPower()) {
       other.setEnergy(0);
-     
+      System.out.println("=============================================================");
+      System.out.println(this.getName()+ "이(가) " + other.getName() + "에게 펀치를 날렸습니다.");
+      System.out.println(this.getName() + " ...... " + this.getEnergy());
+      System.out.println(other.getName() + " ...... " + other.getEnergy() + " ( - " + this.getPower() + ")");
+     return;
     }
+    
     other.setEnergy(other.getEnergy() - this.getPower());
     System.out.println("=============================================================");
+    System.out.println(this.getName()+ "이(가) " + other.getName() + "에게 펀치를 날렸습니다.");
     System.out.println(this.getName() + " ...... " + this.getEnergy());
-    System.out.println(other.getName() + " ...... " + other.getEnergy());
+    System.out.println(other.getName() + " ...... " + other.getEnergy() + " ( - " + this.getPower() + ")");
     
   }
   
+  public boolean isEvade() {
+    return Math.random() < this.getEvasion();
+  }  
 }
