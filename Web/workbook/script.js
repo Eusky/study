@@ -66,46 +66,82 @@ const Form = ({answers, questions}) => {
     );
 };
 
-const MainPage = () => {
-  return (
-    <>
-      <h2 id="html">HTML</h2>
-      <Form questions={questionsHTML} answers={answersHTML}/>
+const MainPage = ({activeTab}) => {
 
-      <h2 id="css">CSS</h2>
-      <Form questions={questionsCSS} answers={answersCSS}/>
-
-      <h2 id="js">JavaScript</h2>
-      <Form answers={answersJS} questions={questionsJS}/>
-
-      <h2 id="react">React</h2>
-      <Form questions={questionsReact} answers={answersReact}/>
-
-      <h2 id="db">DataBase</h2>
-      <Form questions={questionsDB} answers={answersDB}/>
-
-      <h2 id="java">Java</h2>
-      <Form questions={questionsJava} answers={answersJava}/>
-    </>
-  );
+  switch(activeTab) {
+    case "htmlBtn":
+      return(
+        <>
+         <h2 id="html">HTML</h2>
+         <Form questions={questionsHTML} answers={answersHTML}/>
+        </>
+      );
+    case "CSSBtn":
+      return(
+        <>
+         <h2 id="css">CSS</h2>
+         <Form questions={questionsCSS} answers={answersCSS}/>
+        </>
+      );
+    case "jsBtn":
+      return(
+        <>
+         <h2 id="js">JavaScript</h2>
+         <Form questions={questionsJS} answers={answersJS}/>
+        </>
+      );
+    case "ReactBtn":
+      return(
+        <>
+         <h2 id="react">React</h2>
+         <Form questions={questionsReact} answers={answersReact}/>
+        </>
+      );
+    case "dbBtn":
+      return(
+        <>
+         <h2 id="db">DataBase</h2>
+         <Form questions={questionsDB} answers={answersDB}/>
+        </>
+      );
+    case "javaBtn":
+      return(
+        <>
+         <h2 id="java">Java</h2>
+         <Form questions={questionsJava} answers={answersJava}/>
+        </>
+      );
+  }
 }
+
 const Title = ({text}) => {
   return (
     <h1 className="title">{text}</h1>
   );
 }
+
 const Nav = () => {
+
+  const [activeTab, setActiveTab] = React.useState("htmlBtn");
+
+  const handleClick = e => {
+    e.preventDefault();
+    setActiveTab(e.target.id);
+  }
   return (
-    <div id="nav">
-      <a href="#html">HTML</a>
-      <a href="#css">CSS</a>
-      <a href="#js">JavaScript</a>
-      <a href="#react">React</a>
-      <a href="#db">DataBase</a>
-      <a href="#java">Java</a>
-    </div>
+    <>
+      <div id="nav">
+        <a id="htmlBtn"  onClick={handleClick} href="#html"> HTML</a>
+        <a id="CSSBtn"   onClick={handleClick} href="#css">  CSS</a>
+        <a id="jsBtn"    onClick={handleClick} href="#js">   JavaScript</a>
+        <a id="ReactBtn" onClick={handleClick} href="#react">React</a>
+        <a id="dbBtn"    onClick={handleClick} href="#db">   DataBase</a>
+        <a id="javaBtn"  onClick={handleClick} href="#java"> Java</a>
+      </div>
+      <MainPage activeTab={activeTab}/>
+    </>
   );
 }
 ReactDOM.createRoot(document.getElementById("rootTitle")).render(<Title text={"웹 단어집"}/>);
 ReactDOM.createRoot(document.getElementById("rootNav")).render(<Nav/>);
-ReactDOM.createRoot(document.getElementById("rootMainPage")).render(<MainPage/>);
+
