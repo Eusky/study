@@ -565,7 +565,11 @@ const questionsJava = {
     "클래스 자체에 소속됩니다. 그래서 클래스 멤버라고 합니다.",
     "클래스가 메모리에 로드될 때 한 번만 할당되고 프로그램이 종료될때까지 유지됩니다.",
     "모든 객체(인스턴스)가 static 변수를 공유합니다. 여러 객체가 같은 static 변수를 접근하게 됩니다.",
-  ]
+  ],
+  no8: ["기본 타입(Primitive Type) 데이터를 참조 타입(Reference Type)으로 다뤄야 할 때 사용하는 클래스입니다.",
+    "기본 타입 값을 객체로 감싸서 객체처럼 사용할 수 있습니다. (필드, 메소드)",
+    "모든 _______ 클래스는 java.lang 패키지에 포함되어 있습니다. (import 필요 없음)",
+  ],
 }
 
 const answersJava = {
@@ -576,4 +580,5 @@ const answersJava = {
   no5: ["캡슐화", "Encapsulation",],
   no6: ["상속", "Inheritance"],
   no7: ["static",],
+  no8: ["Wrapper Class", "Wrapper",],
 }
