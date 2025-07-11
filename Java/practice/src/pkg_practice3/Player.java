@@ -2,16 +2,15 @@ package pkg_practice3;
 
 public class Player extends Person {
   
-  boolean isOk = false;
-  
+  @Override
   public String action(String userInput) {
-    if(userInput.length() == 4) {
-      isOk = true;
-    }
-    if(isOk) {
+    // 4자리이고 숫자로만 이루어져 있는지 검사
+    if(userInput.length() == 4 && userInput.matches("\\d+")) {
       return userInput;
     }
-    return null;
+    else {
+      return null;
+    }
   }
 
 }

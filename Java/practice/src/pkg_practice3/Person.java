@@ -1,6 +1,6 @@
 package pkg_practice3;
 
-public class Person {
+public abstract class Person {
   
   private String value;
   
@@ -12,8 +12,6 @@ public class Person {
     this.value = value;
   }
 
-  public void action() {
-    
-  }
+  public abstract String action(String str);
 
 }
