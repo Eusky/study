@@ -187,7 +187,8 @@ public class Main {
     String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     
     for(int i=0; i<digit; i++) {
-      
+      SecureRandom sr = new SecureRandom();
+      sr.nextInt()
     }
     
     
