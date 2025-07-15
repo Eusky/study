@@ -188,7 +188,7 @@ public class Main {
     
     for(int i=0; i<digit; i++) {
       SecureRandom sr = new SecureRandom();
-      sr.nextInt()
+      sr.nextInt();
     }
     
     

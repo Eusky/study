@@ -574,6 +574,12 @@ const questionsJava = {
     "_____() 문법은 슈퍼클래스의 생성자를 호출하는 문법입니다.",
     "_____.member 문법은 슈퍼클래스의 멤버에 접근할 때 사용하는 문법입니다.",
   ],
+  no10: ["자바에서 데이터베이스 쿼리문을 실행하기 위해 사용되는 인터페이스입니다.",
+    "쿼리문의 틀(형태)을 미리 작성한 후, 실행 전에 값만 바인딩하여 사용합니다.",
+    "다음과 같은 주요 특징을 가집니다.",
+    "1. 파라미터 바인딩: 쿼리문에서 값이 들어갈 자리에 '?'(placeholder)를 사용하고 실행 전 값을 바인딩합니다.",
+    "2. SQL 인젝션 방지: 파라미터 바인딩을 통해 입력되는 값이 자동으로 이스케이프 처리되기 때문에 SQL 인젝션을 예방할 수 있습니다.",
+  ]
 }
 
 const answersJava = {
@@ -586,5 +592,6 @@ const answersJava = {
   no7: ["static",],
   no8: ["Wrapper Class", "Wrapper",],
   no9: ["super",],
+  no10: ["PreparedStatement", "java.sql.PreparedStatement"],
   
 }

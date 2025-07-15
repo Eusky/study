@@ -1,4 +1,4 @@
-package practice5;
+package pkg_practice5;
 
 import java.io.File;
 import java.io.FileOutputStream;
