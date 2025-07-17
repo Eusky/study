@@ -1,5 +1,7 @@
 package pkg_practice7;
 
+import java.util.Arrays;
+
 /*
  * ArrayList와 비슷한 동작을 하도록 구현한 클래스
  */
@@ -9,10 +11,47 @@ public class myArrayList {
   private int[] arr; // 최초값은 null(필드는 초기값 세팅되므로)
   private int index;   // 현재 배열에서 값을 넣을 차례(인덱스)를 의미 
   
+  public void trimToSize() {
+	  if(!isExists() || index == arr.length) {
+		  int[] newArr = new int[index];
+		  for(int i=0; i<index; i++) {
+			  newArr[i] = arr[i];
+		  }
+		  arr = newArr;
+	  }
+  }
+  
+  public int remove(int index) {
+	  int removedValue = arr[index];
+	  for(int i=index; i<this.index-1; i++) {
+		  arr[i] = arr[i + 1];
+	  }
+	  this.index--;
+	  return removedValue;
+	  
+  }
+  
+  public boolean isEmpty() {
+	  return(isExists() || index == 0);
+  }
+  
+  public void clear() { // 배열 초기화 
+	  arr = null;
+	  index = 0;
+  }
+  
+  public int get(int index) {
+	  if(this.index <= index) {
+		  throw new ArrayIndexOutOfBoundsException("범위 초과");
+	  }
+	  return arr[index]; // 인덱스를 받아서 해당 인덱스의 요소를 반환
+  }
+  
   public void add(int el) {
     if(!isExists()) {      // arr가 비어있으면(null이면)
       arr = new int[10];   // 10칸 크기의 새로운 배열을 arr에 할당
     }
+    
     // arr이 가득 차면 sizeUp() 실행 
     if(isFull()) {         
       sizeUp();            
@@ -48,7 +87,8 @@ public class myArrayList {
     // 값이 들어갈 위치가 배열의 마지막 인덱스(arr.length - 1)보다 크면
     return index == arr.length;
   }
- 
+
+
   // 배열 요소 출력용 toString() 메소드
   @Override
   public String toString() {
