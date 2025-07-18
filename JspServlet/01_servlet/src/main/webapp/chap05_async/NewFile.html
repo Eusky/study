@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+  // 본문을 다 읽은 뒤에 처리하는 이벤트: load
+  
+  window.addEventListener('load', e => {
+    const divJson = document.getElementById("div-json");
+    const btnJson = document.getElementById("btn-json");
+    btnJson.addEventListener("click", e => {
+      fetch("/01_servlet/JsonResponse", {method: "get",})
+      .then(response => response.json())
+      .then(json => {
+        let ul = "<ul>";
+          ul += `<li>제목: ${json.title}</li>`;
+          ul += `<li>평점: ${json.stars}</li>`;
+          ul += `<li>감독: ${json.info.director}</li>`;
+          ul += `<li>장르: ${json.info.genre}</li>`;
+          ul += `<li>배우: ${json.actors.join(',')}</li></ul>`;
+          divJson.innerHTML = ul;
+      })
+    })
+    const btnXml = document.getElementById("btn-xml");
+    btnXml.addEventListener("click", e => {
+      fetch("/01_servlet/XmlResponse")
+      .then(response => response.text())
+      .then(xml => { 
+        const xmlDoc = new DOMParser().parseFromString(xml, "application/xml");
+        console.log(xmlDoc);
+    
+        // 문자열로 반환된 xml 데이터를 XML Document로 수정하기 
+        const weather = xmlDoc.getElementsByTagName("weather")[0];
+        const locals = xmlDoc.getElementsByTagName("local");
+        let t = "<tr>";
+        t += `<td colspan="3"> ${weather.getAttribute('year')} ${weather.getAttribute('month')} ${weather.getAttribute('day')} ${weather.getAttribute('hour')}</td></tr>`;
+        for(let i=0; i<locals.length; i++) {
+          t += "<tr>";
+          t += `<td>${locals[i].textContent}</td>`;
+          t += `<td>${locals[i].getAttribute('ta')}</td>`;
+          t += `<td>${locals[i].getAttribute('desc')}</td>`;
+          t += "</tr>";
+        }
+          document.getElementById("weather").innerHTML = t;
+      })
+    })
+  })  
+</script>
+</head>
+<body>
+  <button id="btn-json" type="button">JSON 비동기 요청</button>
+  <div id="div-json">여기에 JSON 데이터가 나타납니다.</div>
+  <hr>
+  <button id="btn-xml" type="button">XML 비동기 요청</button>
+  <table border="1">
+    <theader>
+      <tr>
+        <th>지역명</th>
+        <th>온도</th>
+        <th>날씨</th>
+      </tr>
+    </theader>
+    <tbody id="weather">
+      
+    </tbody>
+  </table>
+</body>
+</html>
