@@ -1,77 +1,24 @@
 package pkg_practice8;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 class Solution {
-    public int solution(int[] array) {
-    	
-    	System.out.println("원본 배열" + Arrays.toString(array));
-    	
-    	
-        int answer = 0;
-        int value = 0;
-        int index = 0;
-        
-        
-        // 배열->리스트 변환
-        List<Integer>list = Arrays.stream(array).boxed().collect(Collectors.toList());
-        // 중복 제거
-        List<Integer> distinctList = list.stream().distinct().collect(Collectors.toList());
-        
-        if(distinctList.size() == 1) {
-        	answer = distinctList.get(0);
-        	return answer;
-        }
-        
-        System.out.println("중복 제거" + distinctList);
-        // 등장 횟수 배열 		
-        List<Integer> distinctListCount = new ArrayList<>();
-        for(Integer i : distinctList) {
-            int count = 0;
-            for(Integer j : list) {
-                if(i.equals(j))
-                    count++;
-            }
-            distinctListCount.add(count);
-        }
-        System.out.println("중복제거 + 횟수" + distinctListCount);
-        List<Integer> copiedDistinctListCount = new ArrayList<>(distinctListCount);
-        
-        System.out.println("중복제거 + 횟수 복사 배열: " + copiedDistinctListCount);
-        
-        if(isDuplicate(distinctListCount)) {
-          answer = -1;
-          return answer;
-        }
-        else {
+  public int solution(int[] numbers, int k) {
+      int answer = 0;
+      int index = 0;
+      
+      for(int i = 0; i < k - 1; i++) {
+         
+              if(index == numbers.length - 2) {
+                  index = 0;
+              }
+              else if(index == numbers.length - 1) {
+                  index = 1;
+              }
+              else {
+                  index = index + 2;
+              }
           
-          
-//          Collections.sort(distinctListCount);
-          
-          System.out.println("중복제거 + 횟수 + 정렬" + distinctListCount);
-          
-          value = distinctListCount.get(distinctListCount.size() - 1);
-          
-          System.out.println("가장 마지막 요소: " + value);
-          
-          index = copiedDistinctListCount.indexOf(value);
-          
-          System.out.println("마지막 요소가 중복제거+횟수 배열에서 등장하는 인덱스: " + index);
-          answer = distinctList.get(index);
-          return answer;
-        }
-        
-        
-    }
-    
-    private boolean isDuplicate (List<Integer> list) {
-      Collections.sort(list);
-      Integer el1 = list.get(list.size() - 1);
-      Integer el2 = list.get(list.size() - 2);
-      return el1 == el2;
-    }
+      }
+      answer = numbers[index];
+      return answer;
+  }
 }
