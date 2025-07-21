@@ -15,16 +15,16 @@ public class FirstFoward extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
-		 * foward(전달)
+		 * forward(전달)
 		 * 
 		 * 1. 현재 servlet이 받은 클라이언트 요청(request)과 응답(response) 객체를 서버 내의 다른 리소스(서블릿)로 그대로 전달하는 기능입니다.
 		 * 2. 이 과정은 서버 내부에서 이루어지기 때문에 클라이언트는 이 사실을 알 수 없습니다. (URL 변경 감지를 못합니다.)  
 		 * 3. 요청(request)에 저장된 데이터(파라미터, 속성)도 함께 전달됩니다.
-		 * 4. SELECT 문의 실행 결과를 전달하기 위해 foward를 활용합니다. 
-		 * 5. 단순한 다른 페이지로의 이동도 foward를 활용합니다. 
+		 * 4. SELECT 문의 실행 결과를 전달하기 위해 forward를 활용합니다. 
+		 * 5. 단순한 다른 페이지로의 이동도 forward를 활용합니다. 
 		 */
 	  
-	  // SecondFoward로 요청(request)과 응답(response)을 전달(foward) 하기
+	  // SecondFoward로 요청(request)과 응답(response)을 전달(forward) 하기
 	  RequestDispatcher dispatcher = request.getRequestDispatcher("/SecondFoward");
 	  dispatcher.forward(request, response);
 		
