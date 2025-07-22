@@ -55,7 +55,9 @@ public class Main {
   public static void bufferedOutputStream() {
     File file = new File("D:/storage/test.dat");
     
-    try(FileOutputStream fos = new FileOutputStream(file, true));
+    try(FileOutputStream fos = new FileOutputStream(file, true)) {
+      
+    }
   }
 
   public static void main(String[] args) {
