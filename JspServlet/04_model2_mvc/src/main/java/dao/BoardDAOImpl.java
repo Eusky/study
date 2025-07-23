@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -24,7 +25,7 @@ import model.dto.UserDTO;
 // 3. 생성한 BoardDAO 객체를 반환하는 메소드 제공 
 
 
-public class BoardDAO {
+public class BoardDAOImpl implements BoardDao {
   
   // 모든 메소드가 공통으로 사용할 필드
   private Connection con;
@@ -32,22 +33,46 @@ public class BoardDAO {
   private ResultSet rs;
   private String sql;
 
-  private static BoardDAO dao = new BoardDAO();
-  
-  private BoardDAO() {
-    
-  }
-  
-  public static BoardDAO getInstance() {
+  private static BoardDao dao = new BoardDAOImpl();
+
+  public static BoardDao getInstance() {
     return dao;
   }
   
+  // 연결 
+  @Override
+  public Connection getConnection() {
+    Connection con = null;
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_jdbc", "goodee", "goodee");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return con;
+  }
+
+  // 자원 해제
+  @Override
+  public void close() {
+    try {
+      if(rs != null) rs.close();
+      if(ps != null) ps.close();
+      if(con != null) con.close();
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  
   // 조회(목록)
+  @Override
   public List<BoardDTO> getBoards() {
     List<BoardDTO> boards = new ArrayList<>();
     
     try {
-      con = DBUtils.getConnection();
+      con = getConnection();
       StringBuilder sb = new StringBuilder();
       sb.append("SELECT b.bid, u.uid, u.nickname, b.title, b.content, b.created_at, b.modified_at");
       sb.append(" FROM tbl_board b JOIN tbl_user u");
@@ -85,18 +110,19 @@ public class BoardDAO {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      DBUtils.close(con, ps, rs);
+      close();
     }
     
     return boards;
   }
   
   // 조회(단일 항목)
+  @Override
   public BoardDTO getBoardById(int bid) {
     BoardDTO board = null;
     
     try {
-      con = DBUtils.getConnection();
+      con = getConnection();
       
       StringBuilder sb = new StringBuilder();
       sb.append("SELECT b.bid, u.uid, u.nickname, b.title, b.content, b.created_at, b.modified_at");
@@ -126,40 +152,42 @@ public class BoardDAO {
     } catch (Exception e) {
 
     } finally {
-      DBUtils.close(con, ps, rs);
+      close();
     }
     
     return board;
   }
   
   // 삽입(삽입된 행의 갯수 반환)
+  @Override
   public int insertBoard(BoardDTO board) {
     int count = 0;
     
     try {
-      con = DBUtils.getConnection();
+      con = getConnection();
       sql = "INSERT INTO tbl_board(uid, title, content) VALUES (?, ?, ?)";
       ps = con.prepareStatement(sql);
       ps.setInt(1,  board.getUser().getUid());
-      ps.setNString(2, board.getTitle());
+      ps.setString(2, board.getTitle());
       ps.setString(3, board.getContent());
       count = ps.executeUpdate();
       
     } catch (Exception e) {
 
     } finally {
-      DBUtils.close(con, ps, rs);
+      close();
     }
     
     return count;
   }
   
   // 삭제(삭제된 행의 갯수 반환)
+  @Override
   public int deleteBoard(int bid) {
     int count = 0;
     
     try {
-      con = DBUtils.getConnection();
+      con = getConnection();
       sql = "DELETE FROM tbl_board WHERE bid = ?";
       ps = con.prepareStatement(sql);
       ps.setInt(1, bid);
@@ -168,10 +196,36 @@ public class BoardDAO {
     } catch (Exception e) {
 
     } finally {
-      DBUtils.close(con, ps, rs);
+      close();
     }
     
     return count;
   }
 
+  // 수정 (수정된 행의 갯수 반환)
+  @Override
+  public int UpdateBoard(BoardDTO board) {
+    int count = 0;
+    
+    try {
+      con = getConnection();
+      sql = "UPDATE tbl_board SET title = ?, content = ?, modified_at = CURRENT_TIMESTAMP"
+          + " WHERE bid = ?";
+      ps = con.prepareStatement(sql);
+      ps.setNString(1, board.getTitle());
+      ps.setString(2, board.getContent());
+      ps.setInt(3, board.getBid());
+      count = ps.executeUpdate();
+      
+    } catch (Exception e) {
+
+    } finally {
+      close();
+    }
+    
+    return count;
+  }
+
+  
+  
 }

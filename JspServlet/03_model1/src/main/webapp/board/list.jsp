@@ -1,5 +1,6 @@
-<%@page import="model.dto.BoardDTO"%>
 <%@page import="dao.BoardDAO"%>
+<%@page import="model.dto.BoardDTO"%>
+
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,9 +19,11 @@
   <a href="${contextPath}/board/registForm.jsp">게시글 등록하기</a>
   
   <%
-    List<BoardDTO> boards = BoardDAO.getInstance().getBoards();
-    pageContext.setAttribute("boards", boards);
-  %>
+    
+
+        List<BoardDTO> boards =BoardDAO.getInstance().getBoards();
+        pageContext.setAttribute("boards", boards);
+    %>
   <c:set var="boards" value="${BoardDAO.getInstance().getBoards()}"/>
   
   <table border="1">
@@ -43,7 +46,7 @@
           <tr>
             <td>${board.bid}</td>
             <td>${board.user.uid}</td>
-            <td>${board.title}</td>
+            <td><a href="${contextPath}/board/detail.jsp?bid=${board.bid}">${board.title}</a></td>
             <td>${board.createdAt}</td>
           </tr>
         </c:forEach>
