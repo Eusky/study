@@ -13,6 +13,10 @@ div {
   box-sizing: border-box;
 }
 
+.nickname {
+  color: grey;
+}
+
 .wrap {
   width: 1024px;
   margin: 0 auto;
@@ -24,11 +28,22 @@ div {
 }
 
 a {
+  display: inline-block;
+  padding: 7px 10px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.2s;
   text-decoration: none;
 }
 
 a:visited {
-  color: inherit;
+  color: white;
+}
+
+a:hover {
+  background-color: #0056b3;
 }
 
 .flex-container {
@@ -65,7 +80,7 @@ a:visited {
           <div>
             <strong>${b.title}</strong>
           </div>
-          <div>${b.user.nickname}</div>
+          <div class="nickname">작성자 ${b.user.nickname}</div>
         </div>
       </c:forEach>
     </div>

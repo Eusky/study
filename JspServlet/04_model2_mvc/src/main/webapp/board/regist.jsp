@@ -30,7 +30,7 @@
     <button type="submit">등록하기</button>
     <button type="button" onclick="list()">목록보기</button>
   </form>
-  <script type="text/javascript">
+  <script>
     function list() {
       location.href="${contextPath}/board/list.do";
     }
