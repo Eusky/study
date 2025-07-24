@@ -1,3 +1,6 @@
+<%@page import="dao.UserDAO"%>
+<%@page import="model.dto.UserDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -10,13 +13,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+  List<UserDTO> users = UserDAO.getInstance().getUsers();
+  request.setAttribute("users", users);
+%>
   <h1>게시글 등록 화면</h1>
   <form action="${contextPath}/board/regist.do" method="post" >
     <label for="uid">작성자</label>
     <select name="uid" id="uid" >
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+      <c:forEach var="user" items="${users}">
+        <option>${user.uid}</option>
+      </c:forEach>
     </select>
     <br>
     

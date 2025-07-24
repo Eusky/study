@@ -69,7 +69,6 @@ public class BoardServiceImpl implements BoardService {
     
     // 등록
     int count = boardDao.insertBoard(board);
-    System.out.println(count);
     
     // 등록 결과에 따라 이동할 경로 결정 
     String view = null;

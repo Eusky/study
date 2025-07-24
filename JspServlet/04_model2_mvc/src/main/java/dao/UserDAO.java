@@ -49,7 +49,7 @@ public class UserDAO {
     Connection con = null;
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
-      con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_jdbc", "goodee", "goodee");
+      con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_jdbc", "local_home", "home");
     } catch (Exception e) {
       e.printStackTrace();
     }
