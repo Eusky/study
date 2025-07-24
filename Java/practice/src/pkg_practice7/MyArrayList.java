@@ -7,12 +7,13 @@ package pkg_practice7;
 public class MyArrayList<T> extends MyList<T> {
   
   private Object[] arr; // 최초값은 null(필드는 초기값 세팅되므로)
-  private int index;   // 현재 배열에서 값을 넣을 차례(인덱스)를 의미 
+  
+
   
   public void trimToSize() {
-	  if(!isExists() || index == arr.length) {
-		  Object[] newArr = new Object[index];
-		  for(int i=0; i<index; i++) {
+	  if(!isExists() || getIndex() == arr.length) {
+		  Object[] newArr = new Object[getIndex()];
+		  for(int i=0; i<getIndex(); i++) {
 			  newArr[i] = arr[i];
 		  }
 		  arr = newArr;
@@ -21,24 +22,25 @@ public class MyArrayList<T> extends MyList<T> {
   @Override
   public T remove(int index) {
 	  T removedValue = (T) arr[index];
-	  for(int i=index; i<this.index-1; i++) {
+	  for(int i=index; i<getIndex()-1; i++) {
 		  arr[i] = arr[i + 1];
 	  }
-	  this.index--;
+	  getIndex();
+	  setIndex(getIndex() - 1);
 	  return removedValue;
   }
   @Override
   public boolean isEmpty() {
-	  return(isExists() || index == 0);
+	  return(isExists() || getIndex() == 0);
   }
   @Override
   public void clear() { // 배열 초기화 
 	  arr = null;
-	  index = 0;
+	  setIndex(0);
   }
   @Override
   public T get(int index) {
-	  if(this.index <= index) {
+	  if(getIndex() <= index) {
 		  throw new ArrayIndexOutOfBoundsException("범위 초과");
 	  }
 	  return (T) arr[index]; // 인덱스를 받아서 해당 인덱스의 요소를 반환
@@ -53,7 +55,8 @@ public class MyArrayList<T> extends MyList<T> {
     if(isFull()) {         
       sizeUp();            
     }
-    arr[index++] = el;
+    arr[getIndex()] = el;
+    setIndex(getIndex() + 1);
   }
   @Override
   protected boolean isExists() {
@@ -74,15 +77,10 @@ public class MyArrayList<T> extends MyList<T> {
     arr = newArr;
   }
   
-  @Override
-  public int size() {
-    return index;
-  }
-  
   //배열이 가득 찼는지 확인 
   public boolean isFull() {     
     // 값이 들어갈 위치가 배열의 마지막 인덱스(arr.length - 1)보다 크면
-    return index == arr.length;
+    return getIndex() == arr.length;
   }
 
 
@@ -91,9 +89,9 @@ public class MyArrayList<T> extends MyList<T> {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("[");
-    for(int i=0; i<index; i++) { // 실제 들어있는 크기(index-1)만큼만 출력
+    for(int i=0; i<getIndex(); i++) { // 실제 들어있는 크기(index-1)만큼만 출력
       sb.append(arr[i]);
-      if(i<index - 1) {
+      if(i<getIndex() - 1) {
         sb.append(", "); 
       }
     }
