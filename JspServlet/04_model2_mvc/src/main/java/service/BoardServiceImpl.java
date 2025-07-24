@@ -36,21 +36,20 @@ public class BoardServiceImpl implements BoardService {
     // 요청 파라미터 
     String code = request.getParameter("code");
     // 코드에 따른 결과를 전달할 JSP 선택
-    String view = null;
+    
+    ActionForward af = null;
     
     switch(code) {
     case "detail": 
-      view = "/board/detail.jsp";
-      break;
     case "modify":
-      view = "/board/modify.jsp";
+      af = new ActionForward("/board/" + code + ".jsp", false);
       break;
     default:
-      view = "/main.do";
+      af = new ActionForward(request.getContextPath() + "/main.do", true);
     }
     
     // 코드에 따라 선택된 JSP로 forward
-    return new ActionForward(view, false);
+    return af;
   }
 
   @Override
@@ -86,7 +85,33 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public ActionForward modifyBoard(HttpServletRequest request) {
-    return null;
+    // form으로부터 제출된 bid, title, content 받기
+    
+    int bid = Integer.parseInt(request.getParameter("bid"));
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+    
+    // bid, title, content를 이용해 BoardDTO 객체 생성
+    BoardDTO board = new BoardDTO();
+    board.setBid(bid);
+    board.setContent(content);
+    board.setTitle(title);
+    
+    // 수정 
+    int count = boardDao.UpdateBoard(board);
+    String view = "";
+    
+    // 수정 결과에 따라 이동할 경로 결정 (성공하면 detail.jsp, 실패하면 modify.jsp)
+    if(count == 1) {
+      view = request.getContextPath() + "/board/detail.do?bid=" + bid + "&code=detail";
+    } else {
+      view = request.getContextPath() + "/board/modifyForm.do?bid=" + bid + "&code=modify";
+    }
+    
+    // ActionForward 반환 
+    ActionForward af = null;
+    af = new ActionForward(view, true);
+    return af;
   }
 
   @Override

@@ -45,7 +45,7 @@ public class BoardDAOImpl implements BoardDao {
     Connection con = null;
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
-      con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_jdbc", "local_home", "home");
+      con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_jdbc", "goodee", "goodee");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -167,7 +167,7 @@ public class BoardDAOImpl implements BoardDao {
       con = getConnection();
       sql = "INSERT INTO tbl_board(uid, title, content) VALUES (?, ?, ?)";
       ps = con.prepareStatement(sql);
-      ps.setInt(1,  board.getUser().getUid());
+      ps.setInt(1, board.getUser().getUid());
       ps.setString(2, board.getTitle());
       ps.setString(3, board.getContent());
       count = ps.executeUpdate();
@@ -212,7 +212,7 @@ public class BoardDAOImpl implements BoardDao {
       sql = "UPDATE tbl_board SET title = ?, content = ?, modified_at = CURRENT_TIMESTAMP"
           + " WHERE bid = ?";
       ps = con.prepareStatement(sql);
-      ps.setNString(1, board.getTitle());
+      ps.setString(1, board.getTitle());
       ps.setString(2, board.getContent());
       ps.setInt(3, board.getBid());
       count = ps.executeUpdate();

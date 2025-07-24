@@ -63,16 +63,16 @@ public class BoardController extends HttpServlet {
 	    af = boardService.registBoard(request);
 	    break;
 	  case "/board/modifyForm.do": 
-	    af = new ActionForward("/board/modify.jsp", false);
+	    af = boardService.getBoardById(request);
 	    break;
 	  case "/board/modify.do": 
-	    af = new ActionForward("/board/detail.jsp", true); // 확인 필요
+	    af = boardService.modifyBoard(request);
 	    break;
 	  case "/board/remove.do": 
 	    af = boardService.removeBoard(request);
 	    break;
 	  default:
-	    af = new ActionForward("/main.jsp", false);
+	    af = new ActionForward(request.getContextPath() + "/main.do", true);
 	  }
 	  
 	  // 이동
