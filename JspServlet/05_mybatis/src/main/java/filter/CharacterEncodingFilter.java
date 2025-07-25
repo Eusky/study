@@ -38,7 +38,7 @@ public class CharacterEncodingFilter extends HttpFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
     // web.xml 의 filter 태그를 이용해서 encoding 값을 전달할 수 있습니다.
     encoding = fConfig.getInitParameter("encoding");
-    System.out.println("===== CharacterEncodingFilter : " + encoding + "=====");
+    System.out.println("===== CharacterEncodingFilter : " + encoding + " =====");
     if(encoding == null) {
       encoding = "UTF-8";
     }
