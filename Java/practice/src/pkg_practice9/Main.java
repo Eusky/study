@@ -1,5 +1,6 @@
 package pkg_practice9;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -55,7 +56,15 @@ public class Main {
   public static void bufferedOutputStream() {
     File file = new File("D:/storage/test.dat");
     
- 
+
+    try(FileOutputStream fos = new FileOutputStream(file, true)) {
+      BufferedOutputStream bos = new BufferedOutputStream(fos);
+      
+      bos.write("Hello World".getBytes());
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+
   }
 
   public static void main(String[] args) {

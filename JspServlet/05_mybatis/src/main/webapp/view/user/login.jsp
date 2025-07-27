@@ -11,7 +11,7 @@
 </head>
 <body>
   <form action="${contextPath}/user/login" method="post"> 
-    <label>이메일 <input type="text" name=email></label>
+    <label>이메일 <input type="text" name="email"></label>
     <br>
     <label>비밀번호 <input type="password" name="password"></label>
     <br>
