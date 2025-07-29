@@ -13,7 +13,7 @@ public class MyLinkedList<T> extends MyList<T> {
 
   private Node getNodeByIndex(int index) {
     Node current = head;
-    for(int i=0; i<=index; i++) {
+    for(int i=0; i<index; i++) {
       current = current.getNextNode();
     }
     return current;
