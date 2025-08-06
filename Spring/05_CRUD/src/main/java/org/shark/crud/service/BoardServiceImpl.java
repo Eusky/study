@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Service //--------------------- Service 레벨에서 사용하는 @Component(Spring Container에 BoardService 타입의 빈 생성)
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
   
@@ -17,6 +17,11 @@ public class BoardServiceImpl implements BoardService {
   @Override
   public List<BoardDTO> findAllBoards() {
     return boardDAO.getBoards();
+  }
+  
+  @Override
+  public Integer getBoardCount() {
+    return boardDAO.getBoardCount();
   }
 
   @Override
@@ -38,5 +43,6 @@ public class BoardServiceImpl implements BoardService {
   public boolean removeBoard(Integer bid) {
     return boardDAO.deleteBoardById(bid) == 1;
   }
+
 
 }

@@ -111,6 +111,20 @@ const MainPage = ({activeTab}) => {
          <Form questions={questionsJava} answers={answersJava}/>
         </>
       );
+      case "jspBtn":
+      return(
+        <>
+         <h2 id="jsp">JSP/Servlet</h2>
+         <Form questions={questionsJSP} answers={answersJSP}/>
+        </>
+      );
+      case "springBtn":
+      return(
+        <>
+         <h2 id="spring">Spring</h2>
+         <Form questions={questionsSpring} answers={answersSpring}/>
+        </>
+      );
   }
 }
 
@@ -131,17 +145,19 @@ const Nav = () => {
   return (
     <>
       <div id="nav">
-        <a id="htmlBtn"  onClick={handleClick} href="#html"> HTML</a>
-        <a id="CSSBtn"   onClick={handleClick} href="#css">  CSS</a>
-        <a id="jsBtn"    onClick={handleClick} href="#js">   JavaScript</a>
-        <a id="ReactBtn" onClick={handleClick} href="#react">React</a>
-        <a id="dbBtn"    onClick={handleClick} href="#db">   DataBase</a>
-        <a id="javaBtn"  onClick={handleClick} href="#java"> Java</a>
+        <a id="htmlBtn"    onClick={handleClick} href="#html">     HTML</a>
+        <a id="CSSBtn"     onClick={handleClick} href="#css">      CSS</a>
+        <a id="jsBtn"      onClick={handleClick} href="#js">       JavaScript</a>
+        <a id="ReactBtn"   onClick={handleClick} href="#react">    React</a>
+        <a id="dbBtn"      onClick={handleClick} href="#db">       DataBase</a>
+        <a id="javaBtn"    onClick={handleClick} href="#java">     Java</a>
+        <a id="jspBtn"     onClick={handleClick} href="#jsp">      JSP/Servlet</a>
+        <a id="springBtn"  onClick={handleClick} href="#spring">   Spring</a>
       </div>
       <MainPage activeTab={activeTab}/>
     </>
   );
 }
-ReactDOM.createRoot(document.getElementById("rootTitle")).render(<Title text={"웹 단어집"}/>);
+ReactDOM.createRoot(document.getElementById("rootTitle")).render(<Title text={"웹프로그래밍 단어집"}/>);
 ReactDOM.createRoot(document.getElementById("rootNav")).render(<Nav/>);
 

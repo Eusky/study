@@ -638,3 +638,16 @@ const answersJava = {
   no17: ["메소드 오버라이드", "오버라이드", "Override"],
   no18: ["업캐스팅", "Up-Casting", "upcasting"],
 }
+
+const questionsJSP = {
+
+}
+const answersJSP = {
+
+}
+const questionsSpring = {
+
+}
+const answersSpring = {
+
+}

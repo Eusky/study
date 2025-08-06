@@ -10,6 +10,8 @@ public interface BoardService {
   
   List<BoardDTO> findAllBoards();
   
+  Integer getBoardCount();
+  
   BoardDTO findBoardById(Integer bid);
   
   boolean addBoard(BoardDTO board);
