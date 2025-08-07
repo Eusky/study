@@ -23,8 +23,8 @@ public class PointServiceImpl implements PointService {
           // 1. Access Token 발급
           String tokenUrl = "https://api.iamport.kr/users/getToken";
           JSONObject tokenRequest = new JSONObject();
-          tokenRequest.put("imp_key", "6476012641127056");
-          tokenRequest.put("imp_secret", "jWMkNZgQACQQBtWCd3eZbnYoZcY8H7wu7zPuhdJoLv1p3fT6piqF2ZwbJzODHyU73IZv43KNEzF3TSyC");
+          tokenRequest.put("imp_key", "");
+          tokenRequest.put("imp_secret", "");
 
           HttpHeaders tokenHeaders = new HttpHeaders();
           tokenHeaders.setContentType(MediaType.APPLICATION_JSON);

@@ -10,7 +10,7 @@
 
     <script>
         const IMP = window.IMP; // 아임포트 라이브러리 객체 IMP
-        IMP.init("imp85811517"); // 본인의 아임포트 키로 변경
+        IMP.init(""); // 본인의 아임포트 키로 변경
 
         function requestPay() {
             IMP.request_pay({

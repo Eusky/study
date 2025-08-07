@@ -640,14 +640,23 @@ const answersJava = {
 }
 
 const questionsJSP = {
+  
 
 }
 const answersJSP = {
+  
 
 }
 const questionsSpring = {
-
+  no1: ["스프링 컨테이너에서 관리되는 객체",
+      "등록된 빈은 스프링 컨테이너가 그 객채의 생애 주기(생성, 소멸)을 관리한다."],
+  no2: ["요청(Request)을 처리하는 컨트롤러 클래스임을 나타내는 어노테이션.",
+    "클라이언트의 HTTP요청을 받아 적절한 서비스 메소드를 호출하고 결과를 뷰(View)로 전달한다.",
+    "@Component의 특수화된 어노테이션으로 자동으로 빈으로 등록된다.",
+    "요청 매핑 처리를 위해서 @RequestMapping, @GetMapping, @PostMapping 등의 어노테이션을 함께 사용한다."
+  ],
 }
 const answersSpring = {
-
+  no1: ["빈", "bean"],
+  no2: ["@Controller"],
 }
